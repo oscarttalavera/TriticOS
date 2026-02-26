@@ -1,6 +1,8 @@
 import { QuickActions } from "../components/widgets/QuickActions";
 import { BillingActions } from "../components/widgets/BillingActions";
 
+import { ProspectAssets } from "../components/widgets/ProspectAssets";
+
 export function DashboardView() {
     return (
         <>
@@ -19,6 +21,9 @@ export function DashboardView() {
                 </div>
                 <div className="flex flex-col gap-6">
                     <BillingActions />
+                </div>
+                <div className="flex flex-col gap-6">
+                    <ProspectAssets />
                 </div>
             </div>
         </>
