@@ -1,7 +1,7 @@
 import { QuickActions } from "../components/widgets/QuickActions";
 import { BillingActions } from "../components/widgets/BillingActions";
-
 import { ProspectAssets } from "../components/widgets/ProspectAssets";
+import { WorkOrdersOverview } from "../components/widgets/WorkOrdersOverview";
 
 export function DashboardView() {
     return (
@@ -26,6 +26,11 @@ export function DashboardView() {
                     <ProspectAssets />
                 </div>
             </div>
+
+            <div className="mt-8">
+                <WorkOrdersOverview />
+            </div>
         </>
     );
 }
+
