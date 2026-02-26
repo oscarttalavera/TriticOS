@@ -5,7 +5,7 @@ export function ProspectAssets() {
         {
             filename: "Tritic-Folletoservicios.pdf",
             title: "Folleto de Servicios",
-            description: "Presentación general de Tritic 3D.",
+            description: "Presentación general de Tritic.",
         },
         {
             filename: "Tritic-servicios.pdf",
@@ -14,7 +14,7 @@ export function ProspectAssets() {
         },
         {
             filename: "Tritic-Impresion3D.pdf",
-            title: "Documento Impresión 3D",
+            title: "Folleto de Impresión 3D",
             description: "Detalles sobre el servicio de impresión 3D.",
         }
     ];

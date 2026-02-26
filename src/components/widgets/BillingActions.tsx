@@ -1,14 +1,22 @@
-import { FileDigit, CreditCard, ExternalLink, ShieldCheck } from "lucide-react";
+import { FileDigit, CreditCard, ExternalLink, ShieldCheck, Landmark } from "lucide-react";
 
 export function BillingActions() {
     const billingLinks = [
         {
-            title: "Porta Facturación SAT",
+            title: "Portal Facturación SAT",
             description: "Acceso al portal oficial CFDI del SAT.",
             icon: <ShieldCheck className="w-5 h-5 text-emerald-500" />,
-            url: "https://cfdiau.sat.gob.mx/nidp/wsfed/ep?id=SATUPCFDiCon&sid=0&option=credential&sid=0",
+            url: "https://www.sat.gob.mx/portal/public/tramites/factura-electronica",
             color: "bg-emerald-50 dark:bg-emerald-500/10",
             borderColor: "border-emerald-100 dark:border-emerald-500/20"
+        },
+        {
+            title: "Declaraciones SAT",
+            description: "Portal de declaraciones de PF.",
+            icon: <Landmark className="w-5 h-5 text-emerald-600" />,
+            url: "https://www.sat.gob.mx/portal/public/tramites/declaraciones-pf",
+            color: "bg-emerald-50 dark:bg-emerald-500/10",
+            borderColor: "border-emerald-200 dark:border-emerald-500/30"
         },
         {
             title: "Cargar Facturas Safran MXN",
