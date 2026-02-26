@@ -11,8 +11,8 @@ export function Sidebar() {
     return (
         <aside className="w-64 flex-shrink-0 hidden md:flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-colors h-full">
             <div className="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
-                <img src="/tritic-logo.png" alt="Logo" className="w-8 h-8 object-contain mr-3" />
-                <span className="font-semibold text-lg tracking-tight">Hub</span>
+                <img src="/tritic-logo.png" alt="Logo" className="h-5 w-auto object-contain mr-3" />
+                <span className="font-semibold text-lg tracking-tight leading-none self-center pt-0.5">Hub</span>
             </div>
 
             <div className="flex-1 py-6 px-4 space-y-2 overflow-y-auto">

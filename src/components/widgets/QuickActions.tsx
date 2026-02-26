@@ -22,9 +22,17 @@ export function QuickActions() {
             title: "Calculadora de Impresión 3D",
             description: "Cálculos de costos y tiempo para 3D.",
             icon: <Calculator className="w-6 h-6 text-purple-500" />,
-            url: "https://docs.google.com/spreadsheets/d/1QhJWBSTsyzR6PoS9mFmy0r6Gq4eGOxYAkVoS-yh3BIE",
+            url: "https://docs.google.com/spreadsheets/d/1fVFBXBFU8Xk4DtUKjNdxpM6qoOHAnYtZnkvGW8BMkMo",
             color: "bg-purple-50 dark:bg-purple-500/10",
             borderColor: "border-purple-100 dark:border-purple-500/20"
+        },
+        {
+            title: "Registro de POs",
+            description: "Control compartido Oscar/Ramón.",
+            icon: <FileSpreadsheet className="w-6 h-6 text-yellow-500" />,
+            url: "https://docs.google.com/spreadsheets/d/1yLWPsZnfxTHGRtHdqoCeEF22fJX88Rt4chJohETiUSQ",
+            color: "bg-yellow-50 dark:bg-yellow-500/10",
+            borderColor: "border-yellow-100 dark:border-yellow-500/20"
         },
         {
             title: "Assets de Clientes",
