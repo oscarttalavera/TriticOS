@@ -1,10 +1,9 @@
-import { Home, Settings, LayoutDashboard, Wrench, Paintbrush, BriefcaseBusiness } from "lucide-react";
+import { Home, Paintbrush, BriefcaseBusiness } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 export function Sidebar() {
     const navItems = [
         { path: "/dashboard", icon: <Home className="w-5 h-5 mr-3" />, label: "Dashboard" },
-        { path: "/ops", icon: <Wrench className="w-5 h-5 mr-3" />, label: "Operaciones" },
         { path: "/admin", icon: <BriefcaseBusiness className="w-5 h-5 mr-3" />, label: "Administrativo" },
         { path: "/brand", icon: <Paintbrush className="w-5 h-5 mr-3" />, label: "Marca y Diseño" },
     ];
@@ -12,8 +11,8 @@ export function Sidebar() {
     return (
         <aside className="w-64 flex-shrink-0 hidden md:flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-colors h-full">
             <div className="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
-                <LayoutDashboard className="w-6 h-6 text-brand-500 mr-3" />
-                <span className="font-semibold text-lg tracking-tight">Tritic Hub</span>
+                <img src="/tritic-logo.png" alt="Logo" className="w-8 h-8 object-contain mr-3" />
+                <span className="font-semibold text-lg tracking-tight">Hub</span>
             </div>
 
             <div className="flex-1 py-6 px-4 space-y-2 overflow-y-auto">
@@ -34,12 +33,6 @@ export function Sidebar() {
                 ))}
             </div>
 
-            <div className="p-4 border-t border-slate-200 dark:border-slate-800">
-                <button className="w-full flex items-center px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100 font-medium transition-colors">
-                    <Settings className="w-5 h-5 mr-3" />
-                    Configuración
-                </button>
-            </div>
         </aside>
     );
 }

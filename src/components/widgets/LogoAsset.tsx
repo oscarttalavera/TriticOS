@@ -12,7 +12,7 @@ export function LogoAsset() {
 
             <div className="flex-1 flex flex-col items-center justify-center p-8 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700">
                 <img
-                    src="/Tritic logo.png"
+                    src="/tritic-logo.png"
                     alt="Tritic Logo"
                     className="max-w-full h-auto max-h-32 object-contain"
                     onError={(e) => {
@@ -27,7 +27,7 @@ export function LogoAsset() {
 
             <div className="mt-6 flex justify-end">
                 <a
-                    href="/Tritic logo.png"
+                    href="/tritic-logo.png"
                     download="Tritic-Logo.png"
                     className="flex items-center px-4 py-2 bg-brand-500 hover:bg-brand-600 text-white rounded-lg font-medium transition-colors shadow-sm text-sm cursor-pointer"
                 >

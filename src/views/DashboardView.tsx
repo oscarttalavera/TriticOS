@@ -1,5 +1,4 @@
 import { QuickActions } from "../components/widgets/QuickActions";
-import { OperationalCalc } from "../components/widgets/OperationalCalc";
 import { BillingActions } from "../components/widgets/BillingActions";
 
 export function DashboardView() {
@@ -17,9 +16,6 @@ export function DashboardView() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="flex flex-col gap-6">
                     <QuickActions />
-                </div>
-                <div className="flex flex-col gap-6">
-                    <OperationalCalc />
                 </div>
                 <div className="flex flex-col gap-6">
                     <BillingActions />
