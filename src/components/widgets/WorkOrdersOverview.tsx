@@ -20,7 +20,7 @@ export function WorkOrdersOverview() {
             </div>
             <div className="w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 h-[600px]">
                 <iframe
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRcD2aIjnTA62MTju6dtSlkMICgrt4-dAqyQb4PKVRi9ZbMoNzKKjx80inUblbL1ujpTGQh8Xl4hLAX/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRcD2aIjnTA62MTju6dtSlkMICgrt4-dAqyQb4PKVRi9ZbMoNzKKjx80inUblbL1ujpTGQh8Xl4hLAX/pubhtml?gid=321065360&single=true&widget=true&headers=false"
                     className="w-full h-full border-0"
                     title="Dashboard de Ordenes de Trabajo"
                 />

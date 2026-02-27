@@ -1,4 +1,5 @@
 import { BillingActions } from "../components/widgets/BillingActions";
+import { ProspectAssets } from "../components/widgets/ProspectAssets";
 
 export function AdminView() {
     return (
@@ -8,13 +9,16 @@ export function AdminView() {
                     Administrativo
                 </h1>
                 <p className="text-slate-500 dark:text-slate-400 text-sm">
-                    Enlaces de facturación, directorios de clientes y cobranza.
+                    Enlaces de facturación, directorios de clientes, prospección y cobranza.
                 </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
                 <div className="flex flex-col gap-6">
                     <BillingActions />
+                </div>
+                <div className="flex flex-col gap-6">
+                    <ProspectAssets />
                 </div>
             </div>
         </>
