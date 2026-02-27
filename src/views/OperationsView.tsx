@@ -1,5 +1,4 @@
 import { WorkOrdersOverview } from "../components/widgets/WorkOrdersOverview";
-import { PurchaseOrders } from "./../components/widgets/PurchaseOrders";
 import { OperationsResources } from "./../components/widgets/OperationsResources";
 
 export function OperationsView() {
@@ -10,21 +9,18 @@ export function OperationsView() {
                     Operaciones
                 </h1>
                 <p className="text-slate-500 dark:text-slate-400 text-sm">
-                    Gestión de Órdenes de Trabajo, Órdenes de Compra y Recursos Operativos.
+                    Gestión de Órdenes de Trabajo y Recursos Operativos.
                 </p>
+            </div>
+
+            <div className="mb-8">
+                <WorkOrdersOverview />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="flex flex-col gap-6">
-                    <PurchaseOrders />
-                </div>
-                <div className="flex flex-col gap-6">
                     <OperationsResources />
                 </div>
-            </div>
-
-            <div className="mt-8">
-                <WorkOrdersOverview />
             </div>
         </>
     );

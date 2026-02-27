@@ -52,12 +52,28 @@ export function BrandAssets() {
 
             <div>
                 <h3 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3 uppercase tracking-wider">Tipografía</h3>
-                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 mb-4">
                     <div className="flex items-baseline mb-2">
                         <span className="text-3xl font-bold font-sans text-slate-900 dark:text-white mr-3">Aa</span>
                         <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Inter</span>
                     </div>
                     <p className="text-xs text-slate-500 dark:text-slate-400">Primary Font Family (Weights: 300, 400, 500, 600, 700)</p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 mb-4">
+                    <div className="flex items-baseline mb-2" style={{ fontFamily: "'Syncopate', sans-serif" }}>
+                        <span className="text-2xl font-bold text-slate-900 dark:text-white mr-3">Aa</span>
+                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Syncopate</span>
+                    </div>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Heading & Hero Font (Weights: 400, 700)</p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+                    <div className="flex items-baseline mb-2" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                        <span className="text-3xl font-bold text-slate-900 dark:text-white mr-3">Aa</span>
+                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Montserrat</span>
+                    </div>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Secondary Font Family (Weights: 300, 400, 500, 600, 700)</p>
                 </div>
             </div>
         </div>

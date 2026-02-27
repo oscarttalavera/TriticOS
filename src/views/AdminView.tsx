@@ -1,5 +1,6 @@
 import { BillingActions } from "../components/widgets/BillingActions";
 import { ProspectAssets } from "../components/widgets/ProspectAssets";
+import { PurchaseOrders } from "../components/widgets/PurchaseOrders";
 
 export function AdminView() {
     return (
@@ -13,12 +14,18 @@ export function AdminView() {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mb-6">
                 <div className="flex flex-col gap-6">
                     <BillingActions />
                 </div>
                 <div className="flex flex-col gap-6">
                     <ProspectAssets />
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+                <div className="flex flex-col gap-6">
+                    <PurchaseOrders />
                 </div>
             </div>
         </>

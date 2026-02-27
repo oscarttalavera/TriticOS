@@ -1,15 +1,7 @@
-import { BookOpen, Calculator, PackageSearch, Wrench, ChevronRight } from "lucide-react";
+import { BookOpen, PackageSearch, Wrench, ChevronRight } from "lucide-react";
 
 export function OperationsResources() {
     const actions = [
-        {
-            title: "Calculadora de Impresión 3D",
-            description: "Cálculos de costos y tiempo para 3D.",
-            icon: <Calculator className="w-6 h-6 text-purple-500" />,
-            url: "https://docs.google.com/spreadsheets/d/1fVFBXBFU8Xk4DtUKjNdxpM6qoOHAnYtZnkvGW8BMkMo",
-            color: "bg-purple-50 dark:bg-purple-500/10",
-            borderColor: "border-purple-100 dark:border-purple-500/20"
-        },
         {
             title: "Docs Interna",
             description: "Manuales y procesos operativos.",
