@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MainLayout } from "./components/layout/MainLayout";
 import { DashboardView } from "./views/DashboardView";
 import { OperationsView } from "./views/OperationsView";
@@ -7,7 +7,7 @@ import { BrandView } from "./views/BrandView";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <MainLayout>
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -17,7 +17,7 @@ function App() {
           <Route path="/brand" element={<BrandView />} />
         </Routes>
       </MainLayout>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

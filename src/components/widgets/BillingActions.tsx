@@ -37,7 +37,7 @@ export function BillingActions() {
         }
     ];
 
-    const [rates, setRates] = useState<string[]>([]);
+    const [rate, setRate] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -56,11 +56,13 @@ export function BillingActions() {
             // Extract all occurrences of potential rates (format XX.XXXX)
             const matches = [...html.matchAll(/(\d{2}\.\d{4})/g)].map(m => m[1]);
 
-            // Filter unique rates and take the first few meaningful ones
-            const uniqueRates = Array.from(new Set(matches)).slice(0, 4);
+            // Filter unique rates and pick the second one as requested
+            const uniqueRates = Array.from(new Set(matches));
 
-            if (uniqueRates.length > 0) {
-                setRates(uniqueRates);
+            if (uniqueRates.length > 1) {
+                setRate(uniqueRates[1]);
+            } else if (uniqueRates.length === 1) {
+                setRate(uniqueRates[0]);
             } else {
                 throw new Error("No se pudo encontrar tipos de cambio en el documento.");
             }
@@ -84,23 +86,21 @@ export function BillingActions() {
                     Portales de Facturación
                 </h2>
 
-                {/* Inline Exchange Rate Banner - Multiple Rates Mode */}
-                <div className="flex flex-wrap items-center gap-2">
+                {/* Inline Exchange Rate Banner */}
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-500/10 rounded-lg border border-emerald-100 dark:border-emerald-500/20 shadow-sm relative group overflow-hidden">
+                    {/* Subtle gradient shine effect */}
+                    <div className="absolute inset-0 translate-x-[-100%] group-hover:animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/20 dark:via-emerald-400/10 to-transparent skew-x-12" />
+
+                    <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">USD DOF</span>
                     {loading ? (
-                        <div className="h-8 w-24 bg-emerald-100 dark:bg-emerald-800/50 rounded-lg animate-pulse" />
+                        <div className="h-4 w-12 bg-emerald-200/50 dark:bg-emerald-800/50 rounded animate-pulse" />
                     ) : error ? (
-                        <div className="flex items-center text-red-500 text-xs font-medium px-3 py-1.5 bg-red-50 dark:bg-red-500/10 rounded-lg border border-red-100 dark:border-red-500/20">
-                            <AlertCircle className="w-4 h-4 mr-1" />
-                            Error obteniendo Banxico
+                        <div className="flex items-center text-red-500 text-xs font-medium px-2 py-0.5">
+                            <AlertCircle className="w-3 h-3 mr-1" />
+                            Error
                         </div>
                     ) : (
-                        rates.map((val, idx) => (
-                            <div key={idx} className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-500/10 rounded-lg border border-emerald-100 dark:border-emerald-500/20 shadow-sm relative group overflow-hidden">
-                                <div className="absolute inset-0 translate-x-[-100%] group-hover:animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/20 dark:via-emerald-400/10 to-transparent skew-x-12" />
-                                <span className="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 opacity-80">Opción {idx + 1}</span>
-                                <span className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">${val}</span>
-                            </div>
-                        ))
+                        <span className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">${rate}</span>
                     )}
                     <button
                         onClick={fetchRate}
