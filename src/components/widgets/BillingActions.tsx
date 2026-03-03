@@ -37,7 +37,7 @@ export function BillingActions() {
         }
     ];
 
-    const [rate, setRate] = useState<string | null>(null);
+    const [rates, setRates] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -52,13 +52,17 @@ export function BillingActions() {
             }
 
             const html = await response.text();
-            // The Banxico page contains the text "Publicaci&oacute;n DOF" and its value shortly after
-            const match = html.match(/Publicaci(?:&oacute;|ó)n DOF.*?(\d{2}\.\d{4})/is);
 
-            if (match && match[1]) {
-                setRate(match[1]);
+            // Extract all occurrences of potential rates (format XX.XXXX)
+            const matches = [...html.matchAll(/(\d{2}\.\d{4})/g)].map(m => m[1]);
+
+            // Filter unique rates and take the first few meaningful ones
+            const uniqueRates = Array.from(new Set(matches)).slice(0, 4);
+
+            if (uniqueRates.length > 0) {
+                setRates(uniqueRates);
             } else {
-                throw new Error("No se pudo encontrar el tipo de cambio de Publicación DOF en el documento.");
+                throw new Error("No se pudo encontrar tipos de cambio en el documento.");
             }
         } catch (err) {
             console.error("Error fetching Banxico rate:", err);
@@ -80,21 +84,23 @@ export function BillingActions() {
                     Portales de Facturación
                 </h2>
 
-                {/* Inline Exchange Rate Banner */}
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-500/10 rounded-lg border border-emerald-100 dark:border-emerald-500/20 shadow-sm relative group overflow-hidden">
-                    {/* Subtle gradient shine effect */}
-                    <div className="absolute inset-0 translate-x-[-100%] group-hover:animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/20 dark:via-emerald-400/10 to-transparent skew-x-12" />
-
-                    <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">USD DOF</span>
+                {/* Inline Exchange Rate Banner - Multiple Rates Mode */}
+                <div className="flex flex-wrap items-center gap-2">
                     {loading ? (
-                        <div className="h-4 w-12 bg-emerald-200/50 dark:bg-emerald-800/50 rounded animate-pulse" />
+                        <div className="h-8 w-24 bg-emerald-100 dark:bg-emerald-800/50 rounded-lg animate-pulse" />
                     ) : error ? (
-                        <div className="flex items-center text-red-500 text-xs font-medium">
-                            <AlertCircle className="w-3 h-3 mr-1" />
-                            Error
+                        <div className="flex items-center text-red-500 text-xs font-medium px-3 py-1.5 bg-red-50 dark:bg-red-500/10 rounded-lg border border-red-100 dark:border-red-500/20">
+                            <AlertCircle className="w-4 h-4 mr-1" />
+                            Error obteniendo Banxico
                         </div>
                     ) : (
-                        <span className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">${rate}</span>
+                        rates.map((val, idx) => (
+                            <div key={idx} className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-500/10 rounded-lg border border-emerald-100 dark:border-emerald-500/20 shadow-sm relative group overflow-hidden">
+                                <div className="absolute inset-0 translate-x-[-100%] group-hover:animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/20 dark:via-emerald-400/10 to-transparent skew-x-12" />
+                                <span className="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 opacity-80">Opción {idx + 1}</span>
+                                <span className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">${val}</span>
+                            </div>
+                        ))
                     )}
                     <button
                         onClick={fetchRate}

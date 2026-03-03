@@ -3,20 +3,20 @@ import { FileSpreadsheet, ChevronRight } from "lucide-react";
 export function PurchaseOrders() {
     const actions = [
         {
-            title: "Registro Principal POs",
-            description: "Directorio general de Órdenes de Compra.",
-            icon: <FileSpreadsheet className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />,
-            url: "https://docs.google.com/spreadsheets/d/1jqWTtQ3j_tqXBVSKOKO6a8TF4-ZgLgvwosSEDKCj5YY",
-            color: "bg-yellow-100 dark:bg-yellow-500/20",
-            borderColor: "border-yellow-200 dark:border-yellow-500/30"
-        },
-        {
             title: "Registro POs Compartido",
             description: "Control compartido Oscar/Ramón.",
             icon: <FileSpreadsheet className="w-6 h-6 text-yellow-500" />,
             url: "https://docs.google.com/spreadsheets/d/1yLWPsZnfxTHGRtHdqoCeEF22fJX88Rt4chJohETiUSQ",
             color: "bg-yellow-50 dark:bg-yellow-500/10",
             borderColor: "border-yellow-100 dark:border-yellow-500/20"
+        },
+        {
+            title: "Registro Principal POs",
+            description: "Directorio general de Órdenes de Compra.",
+            icon: <FileSpreadsheet className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />,
+            url: "https://docs.google.com/spreadsheets/d/1jqWTtQ3j_tqXBVSKOKO6a8TF4-ZgLgvwosSEDKCj5YY",
+            color: "bg-yellow-100 dark:bg-yellow-500/20",
+            borderColor: "border-yellow-200 dark:border-yellow-500/30"
         }
     ];
 

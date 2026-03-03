@@ -19,10 +19,10 @@ export function AdminView() {
                     <BillingActions />
                 </div>
                 <div className="flex flex-col gap-6">
-                    <ProspectAssets />
+                    <PurchaseOrders />
                 </div>
                 <div className="flex flex-col gap-6">
-                    <PurchaseOrders />
+                    <ProspectAssets />
                 </div>
             </div>
 
