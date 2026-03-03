@@ -52,13 +52,13 @@ export function BillingActions() {
             }
 
             const html = await response.text();
-            // The Banxico page contains the word FIX and its value shortly after
-            const match = html.match(/FIX.*?(\d{2}\.\d{4})/is);
+            // The Banxico page contains the text "Publicaci&oacute;n DOF" and its value shortly after
+            const match = html.match(/Publicaci(?:&oacute;|ó)n DOF.*?(\d{2}\.\d{4})/is);
 
             if (match && match[1]) {
                 setRate(match[1]);
             } else {
-                throw new Error("No se pudo encontrar el tipo de cambio FIX en el documento.");
+                throw new Error("No se pudo encontrar el tipo de cambio de Publicación DOF en el documento.");
             }
         } catch (err) {
             console.error("Error fetching Banxico rate:", err);
