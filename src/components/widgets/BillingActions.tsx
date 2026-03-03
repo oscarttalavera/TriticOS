@@ -1,4 +1,5 @@
-import { FileDigit, CreditCard, ExternalLink, ShieldCheck, Landmark } from "lucide-react";
+import { useState, useEffect } from "react";
+import { FileDigit, CreditCard, ExternalLink, ShieldCheck, Landmark, RefreshCw, AlertCircle } from "lucide-react";
 
 export function BillingActions() {
     const billingLinks = [
@@ -36,6 +37,41 @@ export function BillingActions() {
         }
     ];
 
+    const [rate, setRate] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchRate = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            // Using allorigins raw to bypass CORS as text, or fallback to corsproxy.io if needed.
+            const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.dof.gob.mx/')}`);
+
+            if (!response.ok) {
+                throw new Error("Error fetching data from proxy");
+            }
+
+            const html = await response.text();
+            const match = html.match(/<span class="tituloBloque4">DOLAR<\/span>\s*<br \/>\s*([0-9.]+)/i);
+
+            if (match && match[1]) {
+                setRate(match[1]);
+            } else {
+                throw new Error("No se pudo encontrar el tipo de cambio en el documento.");
+            }
+        } catch (err) {
+            console.error("Error fetching DOF rate:", err);
+            setError("Error");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchRate();
+    }, []);
+
     return (
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm flex flex-col h-full">
             <div className="flex items-center justify-between mb-6">
@@ -43,6 +79,32 @@ export function BillingActions() {
                     <FileDigit className="w-5 h-5 mr-2 text-brand-500" />
                     Portales de Facturación
                 </h2>
+
+                {/* Inline Exchange Rate Banner */}
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-500/10 rounded-lg border border-emerald-100 dark:border-emerald-500/20 shadow-sm relative group overflow-hidden">
+                    {/* Subtle gradient shine effect */}
+                    <div className="absolute inset-0 translate-x-[-100%] group-hover:animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/20 dark:via-emerald-400/10 to-transparent skew-x-12" />
+
+                    <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">USD DOF</span>
+                    {loading ? (
+                        <div className="h-4 w-12 bg-emerald-200/50 dark:bg-emerald-800/50 rounded animate-pulse" />
+                    ) : error ? (
+                        <div className="flex items-center text-red-500 text-xs font-medium">
+                            <AlertCircle className="w-3 h-3 mr-1" />
+                            Error
+                        </div>
+                    ) : (
+                        <span className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">${rate}</span>
+                    )}
+                    <button
+                        onClick={fetchRate}
+                        disabled={loading}
+                        className="ml-1 text-slate-400 hover:text-emerald-500 transition-colors disabled:opacity-50 relative z-10"
+                        title="Actualizar tipo de cambio"
+                    >
+                        <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+                    </button>
+                </div>
             </div>
             <div className="space-y-4 flex-1">
                 {billingLinks.map((link, idx) => (
