@@ -56,13 +56,20 @@ export function BillingActions() {
             // Extract all occurrences of potential rates (format XX.XXXX)
             const matches = [...html.matchAll(/(\d{2}\.\d{4})/g)].map(m => m[1]);
 
-            // Filter unique rates and pick the second one as requested
+            // Filter unique rates
             const uniqueRates = Array.from(new Set(matches));
 
-            if (uniqueRates.length > 1) {
-                setRate(uniqueRates[1]);
-            } else if (uniqueRates.length === 1) {
-                setRate(uniqueRates[0]);
+            if (uniqueRates.length > 0) {
+                const now = new Date();
+                const hour = now.getHours();
+
+                // Request: first value before 12:00pm, second value after 12:00pm
+                if (hour < 12) {
+                    setRate(uniqueRates[0]);
+                } else {
+                    // Use second rate if available after 12:00pm, otherwise fallback to first
+                    setRate(uniqueRates[1] || uniqueRates[0]);
+                }
             } else {
                 throw new Error("No se pudo encontrar tipos de cambio en el documento.");
             }
