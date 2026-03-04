@@ -102,6 +102,15 @@ export function BillingActions() {
                     ) : (
                         <span className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">${rate}</span>
                     )}
+                    <a
+                        href="https://www.banxico.org.mx/tipcamb/tipCamMIAction.do"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-1 text-slate-400 hover:text-emerald-500 transition-colors relative z-10"
+                        title="Ver en portal Banxico"
+                    >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
                     <button
                         onClick={fetchRate}
                         disabled={loading}

@@ -19,7 +19,7 @@ export function DashboardView() {
                     <QuickActions />
                 </div>
                 <div className="flex flex-col gap-6 lg:col-span-1">
-                    <ProspectAssets compact={true} />
+                    <ProspectAssets />
                 </div>
             </div>
 
