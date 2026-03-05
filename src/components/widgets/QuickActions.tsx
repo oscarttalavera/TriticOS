@@ -1,4 +1,4 @@
-import { FileSpreadsheet, HardDrive, Calculator, ChevronRight } from "lucide-react";
+import { FileSpreadsheet, HardDrive, Calculator, ChevronRight, Ruler } from "lucide-react";
 
 export function QuickActions() {
     const actions = [
@@ -25,6 +25,14 @@ export function QuickActions() {
             url: "#",
             color: "bg-blue-50 dark:bg-blue-500/10",
             borderColor: "border-blue-100 dark:border-blue-500/20"
+        },
+        {
+            title: "Tablas de Barrenación",
+            description: "Referencia para diseño de piezas.",
+            icon: <Ruler className="w-6 h-6 text-brand-500" />,
+            url: "https://docs.google.com/spreadsheets/d/1EG4I-Iz51zZtcHpQ-k69xV6Y58S4O6tnI39EEcvDc3g/edit?usp=sharing",
+            color: "bg-brand-50 dark:bg-brand-500/10",
+            borderColor: "border-brand-100 dark:border-brand-500/20"
         }
     ];
 

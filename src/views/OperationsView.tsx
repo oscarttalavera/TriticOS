@@ -1,5 +1,6 @@
 import { WorkOrdersOverview } from "../components/widgets/WorkOrdersOverview";
 import { OperationsResources } from "./../components/widgets/OperationsResources";
+import { EngineeringAssets } from "../components/widgets/EngineeringAssets";
 
 export function OperationsView() {
     return (
@@ -20,6 +21,9 @@ export function OperationsView() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="flex flex-col gap-6">
                     <OperationsResources />
+                </div>
+                <div className="flex flex-col gap-6">
+                    <EngineeringAssets />
                 </div>
             </div>
         </>
