@@ -30,6 +30,8 @@ export function PurchaseOrders() {
                     <a
                         key={idx}
                         href={action.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className={`group flex items-start p-4 rounded-xl border ${action.borderColor} ${action.color} hover:shadow-md transition-all duration-200 cursor-pointer`}
                     >
                         <div className="p-2 bg-white dark:bg-slate-800 rounded-lg shadow-sm mr-4 flex-shrink-0">
