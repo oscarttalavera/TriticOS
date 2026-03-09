@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+# Tritic Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App de escritorio interna para la gestión operativa de **Tritic 3D**. Centraliza órdenes de trabajo, activos de ingeniería, dirección de arte, y administración en una sola interfaz.
 
-Currently, two official plugins are available:
+> **Distribución restringida.** Esta aplicación es de uso exclusivo interno — se distribuye como instalador `.exe` y no tiene acceso público por URL.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Capa | Tecnología |
+|---|---|
+| UI | React 19 + TypeScript |
+| Estilos | Tailwind CSS v3 |
+| Build | Vite 7 |
+| Desktop | Electron 34 |
+| Empaquetado | electron-builder (NSIS) |
+| Routing | React Router v7 (HashRouter) |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Vistas
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Dashboard** — Resumen ejecutivo y acciones rápidas
+- **Operaciones** — Órdenes de trabajo, recursos y activos de ingeniería
+- **Marca** — Activos de marca y prospectos
+- **Admin** — Órdenes de compra y configuración
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Desarrollo
+
+### Requisitos
+- Node.js 20+
+- npm 10+
+
+### Instalación
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Modo desarrollo (hot-reload)
+```bash
+npm run electron:dev
+```
+Abre Vite en `localhost:5173` y lanza una ventana de Electron apuntando a ese servidor. Los cambios en el código se reflejan en vivo.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Generar instalador
+
+```bash
+npm run electron:build
+```
+
+Compila el frontend con Vite, empaqueta la app con `electron-builder` y genera el instalador en:
+
+```
+release/Tritic Hub Setup <version>.exe
+```
+
+El instalador NSIS permite elegir directorio, crea acceso directo en escritorio y en el menú de inicio.
+
+---
+
+## Estructura del proyecto
+
+```
+TriticOS/
+├── electron/
+│   ├── main.cjs        # Proceso principal de Electron
+│   └── preload.cjs     # Bridge seguro para el renderer
+├── src/
+│   ├── components/
+│   │   ├── layout/     # MainLayout, Navbar
+│   │   └── widgets/    # Componentes por vista
+│   ├── views/          # DashboardView, OperationsView, AdminView, BrandView
+│   ├── hooks/          # useTheme, etc.
+│   ├── App.tsx
+│   └── main.tsx
+├── public/             # Favicon y assets estáticos
+├── package.json
+└── vite.config.ts
 ```
