@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ShieldCheck, Landmark, FileDigit, CreditCard, ExternalLink, RefreshCw, AlertCircle } from "lucide-react";
+import { ShieldCheck, Landmark, FileDigit, Building2, CreditCard, ExternalLink, RefreshCw, AlertCircle } from "lucide-react";
 
 export function BillingActions() {
     const billingLinks = [
@@ -14,9 +14,9 @@ export function BillingActions() {
             url: "https://www.sat.gob.mx/portal/public/tramites/declaraciones-pf",
         },
         {
-            title: "Validación de CFDI",
-            icon: <FileDigit className="w-5 h-5 text-brand-500" />,
-            url: "https://portalcfdi.facturaelectronica.sat.gob.mx/",
+            title: "Portal Facturas Safran",
+            icon: <Building2 className="w-5 h-5 text-brand-500" />,
+            url: "https://sem.cfdiseguro.com/cfdi/EnviaFactura",
         },
         {
             title: "Cargar Facturas Vallen",

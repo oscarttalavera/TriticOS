@@ -3,7 +3,6 @@ import { BillingActions } from "../components/widgets/BillingActions";
 import { ProspectAssets } from "../components/widgets/ProspectAssets";
 import { PurchaseOrders } from "../components/widgets/PurchaseOrders";
 import { AdminDirectories } from "../components/widgets/AdminDirectories";
-import { AdminStatsRow } from "../components/widgets/AdminStatsRow";
 
 export function AdminView() {
     return (
@@ -33,11 +32,6 @@ export function AdminView() {
             {/* Full-width directory banner */}
             <div className="w-full lg:max-w-7xl max-w-4xl mb-4">
                 <AdminDirectories />
-            </div>
-
-            {/* KPI stats row */}
-            <div className="w-full lg:max-w-7xl max-w-4xl">
-                <AdminStatsRow />
             </div>
         </>
     );
