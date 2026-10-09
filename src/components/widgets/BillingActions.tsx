@@ -15,7 +15,7 @@ function RatePill() {
             ) : data ? (
                 <span
                     className="font-bold text-slate-900 dark:text-white"
-                    title={stale ? `Sin conexión: último valor conocido (${data.date})` : `Publicado el ${data.date}`}
+                    title={stale ? `Dato del ${data.date}: puede estar desactualizado` : `Publicado el ${data.date}`}
                 >
                     ${data.rate}{stale && <span className="text-amber-500">*</span>}
                 </span>

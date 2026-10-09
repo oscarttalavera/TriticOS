@@ -1,9 +1,6 @@
-const { app, BrowserWindow, ipcMain, shell } = require('electron');
+const { app, BrowserWindow, shell } = require('electron');
 const path = require('path');
 const { URL } = require('url');
-const { fetchUsdDofRate } = require('./fx.cjs');
-
-ipcMain.handle('fx:usd-dof', fetchUsdDofRate);
 
 // Keep a global reference of the window object to prevent garbage collection
 let mainWindow;

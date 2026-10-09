@@ -3,6 +3,10 @@ name: Deploy static content to Pages
 on:
   push:
     branches: ["main", "master"]
+  # Refresca el tipo de cambio USD DOF (México es UTC-6 sin horario de verano): 07:00 y 13:00.
+  schedule:
+    - cron: "0 13 * * *"
+    - cron: "0 19 * * *"
   workflow_dispatch:
 
 permissions:
@@ -33,6 +37,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
+      - name: Fetch USD DOF rate
+        # Si Banxico no responde se conserva el último usd-dof.json del repositorio.
+        run: npm run fetch:rate
+
       - name: Build
         run: npm run build
         
