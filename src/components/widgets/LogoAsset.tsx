@@ -1,4 +1,5 @@
 import { Image as ImageIcon, Download } from "lucide-react";
+import { asset } from "../../lib/assets";
 
 export function LogoAsset() {
     return (
@@ -12,7 +13,7 @@ export function LogoAsset() {
             {/* Logo preview */}
             <div className="flex-1 flex flex-col items-center justify-center p-8 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 mb-4">
                 <img
-                    src="/tritic-logo.png"
+                    src={asset("tritic-logo.png")}
                     alt="Tritic Logo"
                     className="max-w-full h-auto max-h-32 object-contain"
                     onError={(e) => {
@@ -27,7 +28,7 @@ export function LogoAsset() {
             {/* CTA */}
             <div className="flex justify-end">
                 <a
-                    href="/tritic-logo.png"
+                    href={asset("tritic-logo.png")}
                     download="Tritic-Logo.png"
                     className="flex items-center gap-2 px-4 py-2 bg-brand-500 hover:bg-brand-600 text-slate-900 font-semibold text-sm rounded-xl transition-colors"
                 >

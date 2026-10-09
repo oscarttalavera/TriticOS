@@ -1,8 +1,7 @@
 import { BookUser, ArrowRight } from "lucide-react";
+import { DIRECTORY_URL } from "../../data/links";
 
 export function AdminDirectories() {
-    const directoryUrl = "https://docs.google.com/spreadsheets/d/1EFQNksYAqEWJYm4H5XQ1HbVWmMD0WRWvJWWB1NJ3SUk";
-
     return (
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
             <div className="flex items-center gap-4">
@@ -23,7 +22,7 @@ export function AdminDirectories() {
 
                 {/* CTA button */}
                 <a
-                    href={directoryUrl}
+                    href={DIRECTORY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-slate-900 font-semibold text-sm rounded-xl transition-colors duration-150"

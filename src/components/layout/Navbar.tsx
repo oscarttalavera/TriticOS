@@ -2,6 +2,7 @@ import { Sun, Moon, Menu, X, Home, BriefcaseBusiness, Paintbrush, Settings } fro
 import { useTheme } from "../../hooks/useTheme";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { asset } from "../../lib/assets";
 
 export function Navbar() {
     const { theme, toggleTheme } = useTheme();
@@ -30,7 +31,7 @@ export function Navbar() {
                             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                         </button>
                         <div className="flex items-center mr-6">
-                            <img src="/tritic-logo.png" alt="Logo" className="h-5 w-auto object-contain mr-2.5" />
+                            <img src={asset("tritic-logo.png")} alt="Logo" className="h-5 w-auto object-contain mr-2.5" />
                             <span className="font-semibold text-lg tracking-tight leading-none self-center pt-0.5 hidden sm:inline-block">Hub</span>
                         </div>
 

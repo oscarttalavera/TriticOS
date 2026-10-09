@@ -1,4 +1,5 @@
 import { ExternalLink, TableProperties } from "lucide-react";
+import { WORK_ORDERS_EMBED_URL, WORK_ORDERS_SHEET_URL } from "../../data/links";
 
 export function WorkOrdersOverview() {
     return (
@@ -10,7 +11,7 @@ export function WorkOrdersOverview() {
                     Dashboard de Órdenes de Trabajo
                 </p>
                 <a
-                    href="https://docs.google.com/spreadsheets/d/14y5sb60SMEx3Q5m0B-pTBfU0An0QmV7ouJ-HWaQjipw/edit"
+                    href={WORK_ORDERS_SHEET_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-brand-500 hover:bg-brand-600 text-slate-900 text-sm font-semibold rounded-xl transition-colors"
@@ -22,7 +23,7 @@ export function WorkOrdersOverview() {
             {/* Embed */}
             <div className="w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 h-[600px]">
                 <iframe
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRcD2aIjnTA62MTju6dtSlkMICgrt4-dAqyQb4PKVRi9ZbMoNzKKjx80inUblbL1ujpTGQh8Xl4hLAX/pubhtml?gid=321065360&single=true&widget=true&headers=false"
+                    src={WORK_ORDERS_EMBED_URL}
                     className="w-full h-full border-0"
                     title="Dashboard de Ordenes de Trabajo"
                 />
