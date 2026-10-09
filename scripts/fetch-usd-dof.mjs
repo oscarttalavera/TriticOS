@@ -10,12 +10,15 @@ const ATTEMPTS = 4;
 // Filas de la tabla: fecha | FIX (determinación) | Publicación DOF | Para pagos.
 // La más reciente va primero; "N/E" indica que no hubo dato ese día. Antes de las 12:00
 // el FIX del día aún es N/E, por eso se lee la columna DOF y no "el primer número".
+// `asOf` es la fecha de la fila más reciente de la tabla: si no es hoy, Banxico aún no
+// publica el dato del día y la página se niega a mostrar el valor (ver useUsdRate).
 const RATE_ROW =
     /(\d{2}\/\d{2}\/\d{4})\s*<\/td>\s*<td[^>]*>\s*([^<\s]+)\s*<\/td>\s*<td[^>]*>\s*([^<\s]+)\s*<\/td>\s*<td[^>]*>\s*([^<\s]+)\s*<\/td>/g;
 
 function parseUsdDof(html) {
-    for (const [, date, , dof] of html.matchAll(RATE_ROW)) {
-        if (/^\d{2}\.\d{4}$/.test(dof)) return { rate: dof, date };
+    const rows = [...html.matchAll(RATE_ROW)];
+    for (const [, date, , dof] of rows) {
+        if (/^\d{2}\.\d{4}$/.test(dof)) return { rate: dof, date, asOf: rows[0][1] };
     }
     throw new Error("No se encontró el tipo de cambio en la página de Banxico");
 }

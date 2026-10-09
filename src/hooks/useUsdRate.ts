@@ -1,23 +1,36 @@
 import { useCallback, useEffect, useState } from "react";
 import { asset } from "../lib/assets";
 
+interface UsdRateFile {
+    rate: string;
+    /** Fecha de publicación del valor, dd/mm/aaaa, tal como la entrega Banxico. */
+    date: string;
+    /** Fecha de la fila más reciente que tenía la tabla de Banxico al generarse el archivo. */
+    asOf?: string;
+}
+
 export interface UsdRate {
     rate: string;
-    /** Fecha de publicación dd/mm/aaaa, tal como la entrega Banxico. */
     date: string;
 }
 
-/** Días tras los cuales el dato se marca como posiblemente desactualizado. */
-const STALE_AFTER_DAYS = 5;
+/** Hoy en México, formato dd/mm/aaaa (el mismo que usa Banxico). */
+const todayInMexico = () =>
+    new Intl.DateTimeFormat("en-GB", {
+        timeZone: "America/Mexico_City",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+    }).format(new Date());
 
-function isStale(date: string) {
-    const [d, m, y] = date.split("/").map(Number);
-    const days = (Date.now() - new Date(y, m - 1, d).getTime()) / 86_400_000;
-    return days > STALE_AFTER_DAYS;
-}
-
+/**
+ * El tipo de cambio se usa para facturar, así que solo se muestra si el archivo se generó
+ * con la tabla de Banxico ya actualizada al día de hoy. Si no, es mejor no mostrar nada.
+ */
 export function useUsdRate() {
     const [data, setData] = useState<UsdRate | null>(null);
+    /** Fecha del último dato conocido cuando no corresponde a hoy (el valor no se expone). */
+    const [outdatedSince, setOutdatedSince] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -27,10 +40,19 @@ export function useUsdRate() {
         try {
             const response = await fetch(asset("usd-dof.json"), { cache: "no-store" });
             if (!response.ok) throw new Error(`No se pudo leer el archivo (${response.status})`);
-            const json = (await response.json()) as UsdRate;
+            const json = (await response.json()) as UsdRateFile;
             if (!/^\d{2}\.\d{4}$/.test(json.rate)) throw new Error("Formato de dato inválido");
-            setData(json);
+
+            if (json.asOf === todayInMexico()) {
+                setData({ rate: json.rate, date: json.date });
+                setOutdatedSince(null);
+            } else {
+                setData(null);
+                setOutdatedSince(json.date);
+            }
         } catch (err) {
+            setData(null);
+            setOutdatedSince(null);
             setError(err instanceof Error ? err.message : "Error desconocido");
         } finally {
             setLoading(false);
@@ -39,7 +61,11 @@ export function useUsdRate() {
 
     useEffect(() => {
         void load();
+        // Al volver a la pestaña (p. ej. al día siguiente) se vuelve a validar la fecha.
+        const onVisible = () => document.visibilityState === "visible" && void load();
+        document.addEventListener("visibilitychange", onVisible);
+        return () => document.removeEventListener("visibilitychange", onVisible);
     }, [load]);
 
-    return { data, loading, error, stale: data ? isStale(data.date) : false, refresh: load };
+    return { data, outdatedSince, loading, error, refresh: load };
 }

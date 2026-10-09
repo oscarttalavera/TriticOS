@@ -5,7 +5,7 @@ import { useUsdRate } from "../../hooks/useUsdRate";
 import { billingLinks } from "../../data/links";
 
 function RatePill() {
-    const { data, loading, stale, error, refresh } = useUsdRate();
+    const { data, outdatedSince, loading, error, refresh } = useUsdRate();
 
     return (
         <div className="flex items-center gap-1.5 px-2.5 py-1 bg-brand-50 dark:bg-brand-500/10 rounded-lg border border-brand-100 dark:border-brand-500/20 text-xs">
@@ -13,11 +13,15 @@ function RatePill() {
             {loading && !data ? (
                 <div className="h-3.5 w-10 bg-brand-200/50 dark:bg-brand-800/50 rounded animate-pulse" />
             ) : data ? (
+                <span className="font-bold text-slate-900 dark:text-white" title={`Publicado el ${data.date}`}>
+                    ${data.rate}
+                </span>
+            ) : outdatedSince ? (
                 <span
-                    className="font-bold text-slate-900 dark:text-white"
-                    title={stale ? `Dato del ${data.date}: puede estar desactualizado` : `Publicado el ${data.date}`}
+                    className="flex items-center text-amber-600 dark:text-amber-400 font-medium gap-0.5"
+                    title={`Banxico aún no publica el tipo de cambio de hoy (último dato: ${outdatedSince}). No uses un valor anterior para facturar.`}
                 >
-                    ${data.rate}{stale && <span className="text-amber-500">*</span>}
+                    <AlertCircle className="w-3 h-3" /> Sin dato de hoy
                 </span>
             ) : (
                 <span className="flex items-center text-red-500 font-medium gap-0.5" title={error ?? undefined}>

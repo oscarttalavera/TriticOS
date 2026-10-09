@@ -31,7 +31,7 @@ Hub web interno para la gestión operativa de **Tritic 3D**. Centraliza recursos
 
 ## Tipo de cambio (USD DOF)
 
-Banxico no permite CORS, así que el navegador no puede consultarlo directamente. `scripts/fetch-usd-dof.mjs` (`npm run fetch:rate`) lee la columna *Publicación DOF* y escribe `public/usd-dof.json`; la página solo lee ese archivo estático. El workflow de despliegue lo ejecuta en cada push y a diario a las 07:00 y 13:00 (hora de México). Si Banxico no responde, se publica el último archivo guardado en el repositorio y la píldora marca el dato con `*` cuando tiene más de 5 días.
+Banxico no permite CORS, así que el navegador no puede consultarlo directamente. `scripts/fetch-usd-dof.mjs` (`npm run fetch:rate`) lee la columna *Publicación DOF* y escribe `public/usd-dof.json`; la página solo lee ese archivo estático. El workflow de despliegue lo ejecuta en cada push y a diario entre las 07:00 y las 10:00 y a las 13:00 (hora de México). El valor se usa para facturar, así que la página solo lo muestra si el archivo se generó con la tabla de Banxico ya actualizada a hoy (`asOf`); si Banxico aún no publica o no respondió, la píldora dice "Sin dato de hoy" y no muestra ningún número.
 
 ---
 
