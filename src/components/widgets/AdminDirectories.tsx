@@ -6,8 +6,8 @@ export function AdminDirectories() {
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
             <div className="flex items-center gap-4">
                 {/* Icon */}
-                <div className="flex-shrink-0 w-14 h-14 bg-brand-50 dark:bg-brand-500/10 rounded-2xl flex items-center justify-center border border-brand-100 dark:border-brand-500/20">
-                    <BookUser className="w-7 h-7 text-brand-500" />
+                <div className="flex-shrink-0 w-14 h-14 bg-azul-50 dark:bg-azul-700/30 rounded-2xl flex items-center justify-center border border-azul-100 dark:border-azul-700">
+                    <BookUser className="w-7 h-7 text-azul-700 dark:text-verde-500" />
                 </div>
 
                 {/* Text */}
@@ -25,7 +25,7 @@ export function AdminDirectories() {
                     href={DIRECTORY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-slate-900 font-semibold text-sm rounded-xl transition-colors duration-150"
+                    className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-azul-700 hover:bg-azul-900 text-white dark:bg-verde-500 dark:hover:bg-verde-100 dark:text-azul-950 font-semibold text-sm rounded-xl transition-colors duration-150"
                 >
                     <BookUser className="w-4 h-4" />
                     Directorio General

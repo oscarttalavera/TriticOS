@@ -31,8 +31,9 @@ export function Navbar() {
                             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                         </button>
                         <div className="flex items-center mr-6">
-                            <img src={asset("tritic-logo.png")} alt="Logo" className="h-5 w-auto object-contain mr-2.5" />
-                            <span className="font-semibold text-lg tracking-tight leading-none self-center pt-0.5 hidden sm:inline-block">Hub</span>
+                            <img src={asset("logos/tritic-logo-azul.svg")} alt="Tritic" className="h-5 w-auto object-contain mr-2.5 dark:hidden" />
+                            <img src={asset("logos/tritic-logo-verde.svg")} alt="Tritic" className="h-5 w-auto object-contain mr-2.5 hidden dark:block" />
+                            <span className="font-display font-bold text-xs uppercase tracking-normal leading-none self-center pt-0.5 hidden sm:inline-block">Hub</span>
                         </div>
 
                         {/* Desktop Navigation */}
@@ -43,8 +44,8 @@ export function Navbar() {
                                     to={item.path}
                                     className={({ isActive }) =>
                                         `flex items-center px-3 py-1.5 rounded-lg font-medium text-sm transition-colors ${isActive
-                                            ? "bg-brand-50 text-brand-600 dark:bg-brand-900/30 dark:text-brand-400"
-                                            : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100"
+                                            ? "bg-azul-50 text-azul-700 dark:bg-azul-700/40 dark:text-verde-500"
+                                            : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100"
                                         }`
                                     }
                                 >
@@ -58,7 +59,7 @@ export function Navbar() {
                     <div className="flex items-center space-x-2">
                         <button
                             onClick={toggleTheme}
-                            className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                            className="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
                             aria-label="Toggle theme"
                         >
                             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -76,8 +77,8 @@ export function Navbar() {
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className={({ isActive }) =>
                                     `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${isActive
-                                        ? "bg-brand-50 text-brand-600 dark:bg-brand-900/30 dark:text-brand-400"
-                                        : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100"
+                                        ? "bg-azul-50 text-azul-700 dark:bg-azul-700/40 dark:text-verde-500"
+                                        : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100"
                                     }`
                                 }
                             >

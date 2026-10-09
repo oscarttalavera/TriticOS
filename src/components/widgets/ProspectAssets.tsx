@@ -10,7 +10,7 @@ export function ProspectAssets({ compact = false }: ProspectAssetsProps) {
     return (
         <div className={`bg-white dark:bg-slate-900 ${compact ? 'rounded-xl p-4' : 'rounded-2xl p-5'} border border-slate-200 dark:border-slate-800 shadow-sm`}>
             {/* Section Header */}
-            <p className={`text-[10px] font-semibold uppercase tracking-widest text-brand-500 flex items-center gap-1.5 ${compact ? 'mb-3' : 'mb-4'}`}>
+            <p className={`text-[10px] font-semibold font-mono uppercase tracking-widest text-azul-700 dark:text-verde-500 flex items-center gap-1.5 ${compact ? 'mb-3' : 'mb-4'}`}>
                 <FileText className="w-3.5 h-3.5" />
                 Material Prospectos
             </p>
@@ -19,23 +19,23 @@ export function ProspectAssets({ compact = false }: ProspectAssetsProps) {
                 {prospectFiles.map((file) => (
                     <div
                         key={file.filename}
-                        className={`flex items-center gap-3 ${compact ? 'p-2.5' : 'p-3'} rounded-xl border border-slate-100 dark:border-slate-800 hover:border-brand-200 dark:hover:border-brand-700 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all duration-150`}
+                        className={`flex items-center gap-3 ${compact ? 'p-2.5' : 'p-3'} rounded-xl border border-slate-100 dark:border-slate-800 hover:border-azul-200 dark:hover:border-azul-600 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all duration-150`}
                     >
-                        <div className={`${compact ? 'p-1.5' : 'p-2'} bg-red-50 dark:bg-red-500/10 rounded-lg flex-shrink-0`}>
-                            <FileText className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} text-red-500`} />
+                        <div className={`${compact ? 'p-1.5' : 'p-2'} bg-azul-50 dark:bg-azul-700/30 rounded-lg flex-shrink-0`}>
+                            <FileText className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} text-azul-700 dark:text-verde-500`} />
                         </div>
                         <div className="flex-1 min-w-0">
                             <p className={`font-medium text-slate-800 dark:text-slate-100 ${compact ? 'text-xs' : 'text-sm'} truncate`}>
                                 {file.title}
                             </p>
-                            <p className={`text-slate-400 dark:text-slate-500 ${compact ? 'text-[10px]' : 'text-xs'} mt-0.5`}>
+                            <p className={`text-slate-500 dark:text-slate-400 ${compact ? 'text-[10px]' : 'text-xs'} mt-0.5`}>
                                 {file.size}
                             </p>
                         </div>
                         <a
                             href={asset(file.filename)}
                             download={file.filename}
-                            className="p-1.5 text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 hover:bg-brand-50 dark:hover:bg-brand-500/10 rounded-lg transition-colors"
+                            className="p-1.5 text-slate-500 hover:text-azul-600 dark:hover:text-verde-500 hover:bg-azul-50 dark:hover:bg-azul-700/30 rounded-lg transition-colors"
                             title="Descargar"
                         >
                             <Download className={`${compact ? 'w-3.5 h-3.5' : 'w-4 h-4'}`} />

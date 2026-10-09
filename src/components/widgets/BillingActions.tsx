@@ -8,30 +8,30 @@ function RatePill() {
     const { data, outdatedSince, loading, error, refresh } = useUsdRate();
 
     return (
-        <div className="flex items-center gap-1.5 px-2.5 py-1 bg-brand-50 dark:bg-brand-500/10 rounded-lg border border-brand-100 dark:border-brand-500/20 text-xs">
-            <span className="font-semibold text-brand-600 dark:text-brand-400">USD DOF</span>
+        <div className="flex items-center gap-1.5 px-2.5 py-1 bg-azul-50 dark:bg-azul-700/30 rounded-lg border border-azul-100 dark:border-azul-700 text-xs">
+            <span className="font-semibold text-azul-700 dark:text-verde-500">USD DOF</span>
             {loading && !data ? (
-                <div className="h-3.5 w-10 bg-brand-200/50 dark:bg-brand-800/50 rounded animate-pulse" />
+                <div className="h-3.5 w-10 bg-azul-100 dark:bg-azul-700 rounded animate-pulse" />
             ) : data ? (
-                <span className="font-bold text-slate-900 dark:text-white" title={`Publicado el ${data.date}`}>
+                <span className="font-mono font-medium text-slate-900 dark:text-white" title={`Publicado el ${data.date}`}>
                     ${data.rate}
                 </span>
             ) : outdatedSince ? (
                 <span
-                    className="flex items-center text-amber-600 dark:text-amber-400 font-medium gap-0.5"
+                    className="flex items-center text-estado-aviso dark:text-amber-400 font-medium gap-0.5"
                     title={`Banxico aún no publica el tipo de cambio de hoy (último dato: ${outdatedSince}). No uses un valor anterior para facturar.`}
                 >
                     <AlertCircle className="w-3 h-3" /> Sin dato de hoy
                 </span>
             ) : (
-                <span className="flex items-center text-red-500 font-medium gap-0.5" title={error ?? undefined}>
+                <span className="flex items-center text-estado-peligro dark:text-red-400 font-medium gap-0.5" title={error ?? undefined}>
                     <AlertCircle className="w-3 h-3" /> Error
                 </span>
             )}
             <button
                 onClick={refresh}
                 disabled={loading}
-                className="text-slate-400 hover:text-brand-500 transition-colors disabled:opacity-50"
+                className="text-slate-500 hover:text-azul-600 dark:hover:text-verde-500 transition-colors disabled:opacity-50"
                 title="Actualizar tipo de cambio"
                 aria-label="Actualizar tipo de cambio"
             >

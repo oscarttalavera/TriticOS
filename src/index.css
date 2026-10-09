@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@400&family=IBM+Plex+Sans:wght@400;500;600&family=Syncopate:wght@700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,6 +6,9 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 antialiased font-sans transition-colors duration-300;
+    @apply bg-slate-50 text-[#0E1B24] dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-300;
+  }
+  h1, h2, h3, h4 {
+    @apply font-semibold;
   }
 }
