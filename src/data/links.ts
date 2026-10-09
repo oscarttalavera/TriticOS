@@ -1,6 +1,7 @@
 import {
     BookOpen, Building2, CreditCard, FileSpreadsheet, Calculator, HardDrive,
     Landmark, PackageSearch, Ruler, ShieldCheck, Wrench,
+    Box, Hammer, Layers, PencilRuler, SlidersHorizontal, Stethoscope,
     type LucideIcon,
 } from "lucide-react";
 
@@ -19,6 +20,8 @@ export interface LinkItem {
 
 const DRILLING_TABLES_URL =
     "https://docs.google.com/spreadsheets/d/1EG4I-Iz51zZtcHpQ-k69xV6Y58S4O6tnI39EEcvDc3g/edit?usp=sharing";
+
+const TOOLS_URL = "https://tools.tritic3d.com/";
 
 export const DIRECTORY_URL =
     "https://docs.google.com/spreadsheets/d/1EFQNksYAqEWJYm4H5XQ1HbVWmMD0WRWvJWWB1NJ3SUk";
@@ -53,6 +56,55 @@ export const engineeringResources: LinkItem[] = [
         icon: Ruler,
         tone: "brand",
         url: DRILLING_TABLES_URL,
+    },
+    {
+        title: "Tritic Tools",
+        subtitle: "Portal con todas las herramientas de ingeniería.",
+        icon: Hammer,
+        tone: "brand",
+        url: TOOLS_URL,
+    },
+    {
+        title: "Catálogo de Materiales",
+        subtitle: "Propiedades, temperaturas y aplicaciones de materiales FDM.",
+        icon: Layers,
+        tone: "purple",
+        url: `${TOOLS_URL}materiales/`,
+    },
+    {
+        title: "Guía de Diseño para Impresión 3D",
+        subtitle: "Espesores, voladizos, orientación, holguras y ensambles.",
+        icon: PencilRuler,
+        tone: "blue",
+        url: `${TOOLS_URL}diseno/`,
+    },
+    {
+        title: "Diagnóstico de Fallas",
+        subtitle: "Del síntoma a la causa y su solución.",
+        icon: Stethoscope,
+        tone: "red",
+        url: `${TOOLS_URL}diagnostico/`,
+    },
+    {
+        title: "Guía de Calibración",
+        subtitle: "Calibración de impresora paso a paso con modelos de prueba.",
+        icon: SlidersHorizontal,
+        tone: "teal",
+        url: `${TOOLS_URL}calibracion/`,
+    },
+    {
+        title: "Guía de Barrenos",
+        subtitle: "Diámetros para machuelos, insertos y pernos.",
+        icon: Ruler,
+        tone: "orange",
+        url: `${TOOLS_URL}barrenos/`,
+    },
+    {
+        title: "Directorio de Modelos 3D",
+        subtitle: "Más de 25 sitios para descargar modelos.",
+        icon: Box,
+        tone: "indigo",
+        url: `${TOOLS_URL}modelos/`,
     },
 ];
 
