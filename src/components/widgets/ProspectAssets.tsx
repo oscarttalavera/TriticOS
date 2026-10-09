@@ -19,7 +19,7 @@ export function ProspectAssets({ compact = false }: ProspectAssetsProps) {
                 {prospectFiles.map((file) => (
                     <div
                         key={file.filename}
-                        className={`flex items-center gap-3 ${compact ? 'p-2.5' : 'p-3'} rounded-xl border border-slate-100 dark:border-slate-800 hover:border-azul-200 dark:hover:border-azul-600 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all duration-150`}
+                        className={`flex items-center gap-3 ${file.legacy ? 'opacity-60 hover:opacity-100' : ''} ${compact ? 'p-2.5' : 'p-3'} rounded-xl border border-slate-100 dark:border-slate-800 hover:border-azul-200 dark:hover:border-azul-600 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all duration-150`}
                     >
                         <div className={`${compact ? 'p-1.5' : 'p-2'} bg-azul-50 dark:bg-azul-700/30 rounded-lg flex-shrink-0`}>
                             <FileText className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} text-azul-700 dark:text-verde-500`} />

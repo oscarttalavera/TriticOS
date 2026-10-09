@@ -102,10 +102,15 @@ export interface ProspectFile {
     filename: string;
     title: string;
     size: string;
+    /** Versión anterior: sigue disponible pero se muestra al final y atenuada. */
+    legacy?: boolean;
 }
 
 export const prospectFiles: ProspectFile[] = [
-    { filename: "Tritic-Folletoservicios.pdf", title: "Folleto de Servicios", size: "PDF · 1.2 MB" },
-    { filename: "Tritic-servicios.pdf", title: "Catálogo de Servicios", size: "PDF · 65 KB" },
-    { filename: "Tritic-Impresion3D.pdf", title: "Folleto de Impresión 3D", size: "PDF · 182 KB" },
+    { filename: "Tritic-Presentacion-de-servicios.pdf", title: "Presentación de Servicios", size: "PDF · 1.4 MB" },
+    { filename: "Tritic-Ficha-de-servicios.pdf", title: "Ficha de Servicios", size: "PDF · 970 KB" },
+    { filename: "Tritic-Impresion-3D-para-planta.pdf", title: "Impresión 3D para Planta", size: "PDF · 433 KB" },
+    { filename: "Tritic-Folletoservicios.pdf", title: "Folleto de Servicios (anterior)", size: "PDF · 1.2 MB", legacy: true },
+    { filename: "Tritic-servicios.pdf", title: "Catálogo de Servicios (anterior)", size: "PDF · 65 KB", legacy: true },
+    { filename: "Tritic-Impresion3D.pdf", title: "Folleto de Impresión 3D (anterior)", size: "PDF · 182 KB", legacy: true },
 ];
