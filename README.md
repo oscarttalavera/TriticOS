@@ -1,6 +1,6 @@
 # Tritic Hub
 
-App de escritorio interna para la gestión operativa de **Tritic 3D**. Centraliza órdenes de trabajo, activos de ingeniería, dirección de arte, y administración en una sola interfaz.
+App de escritorio interna para la gestión operativa de **Tritic 3D**. Centraliza recursos operativos, activos de ingeniería, dirección de arte, y administración en una sola interfaz.
 
 > **Distribución restringida.** Esta aplicación es de uso exclusivo interno — se distribuye como instalador `.exe` y no tiene acceso público por URL.
 
@@ -22,7 +22,7 @@ App de escritorio interna para la gestión operativa de **Tritic 3D**. Centraliz
 ## Vistas
 
 - **Dashboard** — Resumen ejecutivo y acciones rápidas
-- **Operaciones** — Órdenes de trabajo, recursos y activos de ingeniería
+- **Operaciones** — Recursos y activos de ingeniería
 - **Marca** — Activos de marca y prospectos
 - **Admin** — Órdenes de compra y configuración
 

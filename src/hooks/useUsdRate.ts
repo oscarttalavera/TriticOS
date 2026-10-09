@@ -6,9 +6,18 @@ const CACHE_KEY = "usd-dof-rate";
 interface CachedRate extends UsdDofRate {
     /** Día local (aaaa-mm-dd) en que se consultó. */
     fetchedOn: string;
+    /** Hora local (0-23) de la consulta. */
+    fetchedHour: number;
 }
 
+/** A partir de esta hora cambia el valor vigente de la fuente. */
+const SWITCH_HOUR = 12;
+
 const today = () => new Date().toLocaleDateString("sv-SE");
+
+/** La caché sirve si es de hoy y no cruzamos las 12:00 desde que se guardó. */
+const isFresh = (c: CachedRate) =>
+    c.fetchedOn === today() && (c.fetchedHour >= SWITCH_HOUR || new Date().getHours() < SWITCH_HOUR);
 
 function readCache(): CachedRate | null {
     try {
@@ -27,7 +36,7 @@ export function useUsdRate() {
 
     const load = useCallback(async (force: boolean) => {
         const cached = readCache();
-        if (!force && cached?.fetchedOn === today()) {
+        if (!force && cached && isFresh(cached)) {
             setData(cached);
             return;
         }
@@ -35,9 +44,12 @@ export function useUsdRate() {
         setLoading(true);
         setError(null);
         try {
-            if (!window.electronAPI) throw new Error("Disponible solo en la app de escritorio");
+            if (typeof window.electronAPI?.getUsdDofRate !== "function") {
+                throw new Error("Cierra y vuelve a abrir Tritic Hub para activar esta función");
+            }
             const fresh = await window.electronAPI.getUsdDofRate();
-            localStorage.setItem(CACHE_KEY, JSON.stringify({ ...fresh, fetchedOn: today() }));
+            const entry: CachedRate = { ...fresh, fetchedOn: today(), fetchedHour: new Date().getHours() };
+            localStorage.setItem(CACHE_KEY, JSON.stringify(entry));
             setData(fresh);
             setStale(false);
         } catch (err) {

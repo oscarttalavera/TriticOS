@@ -20,12 +20,6 @@ export interface LinkItem {
 const DRILLING_TABLES_URL =
     "https://docs.google.com/spreadsheets/d/1EG4I-Iz51zZtcHpQ-k69xV6Y58S4O6tnI39EEcvDc3g/edit?usp=sharing";
 
-export const WORK_ORDERS_SHEET_URL =
-    "https://docs.google.com/spreadsheets/d/14y5sb60SMEx3Q5m0B-pTBfU0An0QmV7ouJ-HWaQjipw/edit";
-
-export const WORK_ORDERS_EMBED_URL =
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRcD2aIjnTA62MTju6dtSlkMICgrt4-dAqyQb4PKVRi9ZbMoNzKKjx80inUblbL1ujpTGQh8Xl4hLAX/pubhtml?gid=321065360&single=true&widget=true&headers=false";
-
 export const DIRECTORY_URL =
     "https://docs.google.com/spreadsheets/d/1EFQNksYAqEWJYm4H5XQ1HbVWmMD0WRWvJWWB1NJ3SUk";
 

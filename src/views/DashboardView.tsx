@@ -1,7 +1,6 @@
 import { Home } from "lucide-react";
 import { PageHeader } from "../components/ui/PageHeader";
 import { QuickActions } from "../components/widgets/QuickActions";
-import { WorkOrdersOverview } from "../components/widgets/WorkOrdersOverview";
 import { ProspectAssets } from "../components/widgets/ProspectAssets";
 
 export function DashboardView() {
@@ -9,13 +8,9 @@ export function DashboardView() {
         <>
             <PageHeader icon={Home} title="Panel General" description="Vista rápida de tus herramientas esenciales de Tritic Hub." />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <QuickActions />
                 <ProspectAssets />
-            </div>
-
-            <div className="mt-4">
-                <WorkOrdersOverview />
             </div>
         </>
     );

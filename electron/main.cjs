@@ -1,24 +1,7 @@
 const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const path = require('path');
 const { URL } = require('url');
-
-const BANXICO_URL = 'https://www.banxico.org.mx/tipcamb/tipCamMIAction.do';
-
-// Filas de la tabla: fecha | FIX (determinación) | Publicación DOF | Para pagos.
-// La más reciente va primero; "N/E" indica que no hubo dato ese día.
-const RATE_ROW =
-  /(\d{2}\/\d{2}\/\d{4})\s*<\/td>\s*<td[^>]*>\s*([^<\s]+)\s*<\/td>\s*<td[^>]*>\s*([^<\s]+)\s*<\/td>\s*<td[^>]*>\s*([^<\s]+)\s*<\/td>/g;
-
-async function fetchUsdDofRate() {
-  const response = await fetch(BANXICO_URL, { signal: AbortSignal.timeout(10000) });
-  if (!response.ok) throw new Error(`Banxico respondió ${response.status}`);
-  const html = await response.text();
-
-  for (const [, date, , dof] of html.matchAll(RATE_ROW)) {
-    if (/^\d{2}\.\d{4}$/.test(dof)) return { rate: dof, date };
-  }
-  throw new Error('No se encontró el tipo de cambio en la página de Banxico');
-}
+const { fetchUsdDofRate } = require('./fx.cjs');
 
 ipcMain.handle('fx:usd-dof', fetchUsdDofRate);
 
