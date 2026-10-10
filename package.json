@@ -9,6 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "fetch:rate": "node scripts/fetch-usd-dof.mjs",
+    "auth:add-user": "node scripts/add-user.mjs",
     "preview": "vite preview",
     "electron:dev": "concurrently -k \"cross-env NODE_ENV=development vite\" \"wait-on tcp:5173 && cross-env NODE_ENV=development electron .\"",
     "electron:build": "npm run build && electron-builder --win"

@@ -1,11 +1,13 @@
-import { Sun, Moon, Menu, X, Home, BriefcaseBusiness, Paintbrush, Settings } from "lucide-react";
+import { Sun, Moon, Menu, X, Home, BriefcaseBusiness, Paintbrush, Settings, LogOut } from "lucide-react";
 import { useTheme } from "../../hooks/useTheme";
+import { useAuth } from "../../auth/authContext";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { asset } from "../../lib/assets";
 
 export function Navbar() {
     const { theme, toggleTheme } = useTheme();
+    const { username, logout } = useAuth();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navItems = [
@@ -63,6 +65,14 @@ export function Navbar() {
                             aria-label="Toggle theme"
                         >
                             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                        </button>
+                        <button
+                            onClick={logout}
+                            className="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                            aria-label={`Cerrar sesión de ${username}`}
+                            title={`Cerrar sesión (${username})`}
+                        >
+                            <LogOut className="w-4 h-4" />
                         </button>
                     </div>
                 </div>
