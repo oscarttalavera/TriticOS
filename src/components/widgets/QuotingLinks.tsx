@@ -5,7 +5,7 @@ import { quotingLinks } from "../../data/links";
 
 export function QuotingLinks() {
     return (
-        <SectionCard title="1 · Cotizar" icon={Calculator}>
+        <SectionCard title="Cotizar" icon={Calculator}>
             <LinkList items={quotingLinks} />
         </SectionCard>
     );

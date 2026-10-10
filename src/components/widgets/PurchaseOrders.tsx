@@ -5,7 +5,7 @@ import { purchaseOrders } from "../../data/links";
 
 export function PurchaseOrders() {
     return (
-        <SectionCard title="2 · Órdenes de Compra" icon={FileSpreadsheet}>
+        <SectionCard title="Órdenes de Compra" icon={FileSpreadsheet}>
             <LinkList items={purchaseOrders} />
         </SectionCard>
     );

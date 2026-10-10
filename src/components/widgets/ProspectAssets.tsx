@@ -12,7 +12,7 @@ export function ProspectAssets({ compact = false }: ProspectAssetsProps) {
             {/* Section Header */}
             <p className={`text-[10px] font-semibold font-mono uppercase tracking-widest text-azul-700 dark:text-verde-500 flex items-center gap-1.5 ${compact ? 'mb-3' : 'mb-4'}`}>
                 <FileText className="w-3.5 h-3.5" />
-                4 · Material para prospectos
+                Material para prospectos
             </p>
 
             <div className={`flex flex-col ${compact ? 'gap-1.5' : 'gap-2'}`}>
