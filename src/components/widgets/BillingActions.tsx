@@ -44,7 +44,7 @@ function RatePill() {
 export function BillingActions() {
     return (
         <SectionCard
-            title="Portales de Facturación"
+            title="3 · Facturar"
             icon={FileDigit}
             action={<RatePill />}
             className="flex flex-col h-full"

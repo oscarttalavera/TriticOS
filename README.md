@@ -21,10 +21,10 @@ Hub web interno para la gestión operativa de **Tritic 3D**. Centraliza recursos
 
 ## Vistas
 
-- **Dashboard** — Resumen ejecutivo y acciones rápidas
-- **Operaciones** — Recursos y activos de ingeniería
-- **Marca** — Activos de marca y prospectos
-- **Admin** — Órdenes de compra y configuración
+- **Inicio** — Accesos frecuentes (cotización, calculadora, Tritic Tools, directorio)
+- **Ingeniería y Taller** — Herramientas de ingeniería y recursos operativos
+- **Administrativo** — Flujo cotizar → órdenes de compra → facturar, más material para prospectos
+- **Marca y Diseño** — Logotipos, tipografía y paleta
 
 
 ---

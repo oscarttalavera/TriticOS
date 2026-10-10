@@ -5,8 +5,8 @@ import { engineeringResources } from "../../data/links";
 
 export function EngineeringAssets() {
     return (
-        <SectionCard title="Recursos de Ingeniería" icon={Ruler}>
-            <LinkList items={engineeringResources} />
+        <SectionCard title="Herramientas y recursos" icon={Ruler}>
+            <LinkList items={engineeringResources} columns={2} />
         </SectionCard>
     );
 }

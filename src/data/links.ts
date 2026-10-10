@@ -1,5 +1,5 @@
 import {
-    BookOpen, Building2, CreditCard, FileSpreadsheet, Calculator, HardDrive,
+    BookOpen, BookUser, Building2, CreditCard, FileSpreadsheet, Calculator, HardDrive,
     Landmark, PackageSearch, Ruler, ShieldCheck, Wrench,
     Box, Hammer, Layers, PencilRuler, SlidersHorizontal, Stethoscope,
     type LucideIcon,
@@ -26,43 +26,55 @@ const TOOLS_URL = "https://tools.tritic3d.com/";
 export const DIRECTORY_URL =
     "https://docs.google.com/spreadsheets/d/1EFQNksYAqEWJYm4H5XQ1HbVWmMD0WRWvJWWB1NJ3SUk";
 
-export const quickActions: LinkItem[] = [
-    {
-        title: "Nueva Cotización",
-        icon: FileSpreadsheet,
-        tone: "green",
-        url: "https://docs.google.com/spreadsheets/d/1n8C5HXRL-HGFSptkOSpJIPK6BfdAsCfO4ndFjJAkwlE",
-    },
-    {
-        title: "Calculadora de Impresión 3D",
-        icon: Calculator,
-        tone: "purple",
-        url: "https://docs.google.com/spreadsheets/d/1fVFBXBFU8Xk4DtUKjNdxpM6qoOHAnYtZnkvGW8BMkMo",
-    },
+const quoteLink: LinkItem = {
+    title: "Nueva Cotización",
+    icon: FileSpreadsheet,
+    tone: "green",
+    url: "https://docs.google.com/spreadsheets/d/1n8C5HXRL-HGFSptkOSpJIPK6BfdAsCfO4ndFjJAkwlE",
+};
+
+const calculatorLink: LinkItem = {
+    title: "Calculadora de Impresión 3D",
+    icon: Calculator,
+    tone: "purple",
+    url: "https://docs.google.com/spreadsheets/d/1fVFBXBFU8Xk4DtUKjNdxpM6qoOHAnYtZnkvGW8BMkMo",
+};
+
+const toolsPortalLink: LinkItem = {
+    title: "Tritic Tools",
+    subtitle: "Portal con todas las herramientas de ingeniería.",
+    icon: Hammer,
+    tone: "brand",
+    url: TOOLS_URL,
+};
+
+const directoryLink: LinkItem = {
+    title: "Directorio Tritic",
+    subtitle: "Contacto de colaboradores y departamentos.",
+    icon: BookUser,
+    tone: "blue",
+    url: DIRECTORY_URL,
+};
+
+/** Atajos de Inicio: los recursos de uso diario, que viven en su sección. */
+export const homeShortcuts: LinkItem[] = [quoteLink, calculatorLink, toolsPortalLink, directoryLink];
+
+/** Administrativo, paso 1: cotizar. */
+export const quotingLinks: LinkItem[] = [
+    quoteLink,
+    calculatorLink,
     { title: "Assets de Clientes", icon: HardDrive, tone: "blue" },
-    { title: "Tablas de Barrenación", icon: Ruler, tone: "brand", url: DRILLING_TABLES_URL },
 ];
 
-export const operationsResources: LinkItem[] = [
-    { title: "Docs Interna", icon: BookOpen, tone: "orange" },
-    { title: "Control de Inventario", icon: PackageSearch, tone: "indigo" },
-    { title: "Mantenimiento", icon: Wrench, tone: "teal" },
-];
-
+/** Ingeniería y Taller. Los enlaces sin `url` se agrupan en "Próximamente". */
 export const engineeringResources: LinkItem[] = [
+    toolsPortalLink,
     {
         title: "Tablas de Barrenación",
         subtitle: "Referencia para diseño de piezas (insertos y machuelos).",
         icon: Ruler,
         tone: "brand",
         url: DRILLING_TABLES_URL,
-    },
-    {
-        title: "Tritic Tools",
-        subtitle: "Portal con todas las herramientas de ingeniería.",
-        icon: Hammer,
-        tone: "brand",
-        url: TOOLS_URL,
     },
     {
         title: "Catálogo de Materiales",
@@ -106,6 +118,9 @@ export const engineeringResources: LinkItem[] = [
         tone: "indigo",
         url: `${TOOLS_URL}modelos/`,
     },
+    { title: "Docs Interna", icon: BookOpen, tone: "orange" },
+    { title: "Control de Inventario", icon: PackageSearch, tone: "indigo" },
+    { title: "Mantenimiento", icon: Wrench, tone: "teal" },
 ];
 
 export const purchaseOrders: LinkItem[] = [

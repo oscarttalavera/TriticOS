@@ -1,12 +1,12 @@
-import { FileSpreadsheet } from "lucide-react";
+import { Zap } from "lucide-react";
 import { SectionCard } from "../ui/SectionCard";
 import { LinkList } from "../ui/LinkList";
-import { quickActions } from "../../data/links";
+import { homeShortcuts } from "../../data/links";
 
 export function QuickActions() {
     return (
-        <SectionCard title="Acciones Rápidas" icon={FileSpreadsheet}>
-            <LinkList items={quickActions} />
+        <SectionCard title="Accesos frecuentes" icon={Zap}>
+            <LinkList items={homeShortcuts} columns={2} />
         </SectionCard>
     );
 }

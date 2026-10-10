@@ -1,25 +1,21 @@
 import { BriefcaseBusiness } from "lucide-react";
 import { PageHeader } from "../components/ui/PageHeader";
+import { QuotingLinks } from "../components/widgets/QuotingLinks";
+import { PurchaseOrders } from "../components/widgets/PurchaseOrders";
 import { BillingActions } from "../components/widgets/BillingActions";
 import { ProspectAssets } from "../components/widgets/ProspectAssets";
-import { PurchaseOrders } from "../components/widgets/PurchaseOrders";
-import { AdminDirectories } from "../components/widgets/AdminDirectories";
 
 export function AdminView() {
     return (
         <>
-            <PageHeader icon={BriefcaseBusiness} title="Administrativo" description="Gestión centralizada de recursos, facturación y documentos comerciales del ecosistema Tritic Hub." />
+            <PageHeader icon={BriefcaseBusiness} title="Administrativo" description="Del presupuesto a la factura: cotización, órdenes de compra y facturación en un mismo lugar." />
 
-            {/* 3-column widget grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full lg:max-w-7xl max-w-4xl mb-4">
-                <BillingActions />
+            {/* Orden de lectura = orden del flujo de trabajo */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                <QuotingLinks />
                 <PurchaseOrders />
+                <BillingActions />
                 <ProspectAssets />
-            </div>
-
-            {/* Full-width directory banner */}
-            <div className="w-full lg:max-w-7xl max-w-4xl mb-4">
-                <AdminDirectories />
             </div>
         </>
     );
