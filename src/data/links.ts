@@ -1,7 +1,7 @@
 import {
     BookOpen, BookUser, Building2, CreditCard, FileSpreadsheet, Calculator, HardDrive,
     Landmark, PackageSearch, Ruler, ShieldCheck, Wrench,
-    Box, Hammer, Layers, PencilRuler, SlidersHorizontal, Stethoscope,
+    Box, Hammer, Layers, PencilRuler, SlidersHorizontal, Stethoscope, Zap,
     type LucideIcon,
 } from "lucide-react";
 
@@ -34,10 +34,19 @@ const quoteLink: LinkItem = {
 };
 
 const calculatorLink: LinkItem = {
-    title: "Calculadora de Impresión 3D",
+    title: "Cotizador",
+    subtitle: "Impresión 3D y estructuras.",
     icon: Calculator,
     tone: "purple",
-    url: "https://docs.google.com/spreadsheets/d/1fVFBXBFU8Xk4DtUKjNdxpM6qoOHAnYtZnkvGW8BMkMo",
+    url: "https://docs.google.com/spreadsheets/d/1GcrvYIQl4BNtuDotTuda6uSxanXtXUhzTWNZguooD9s/edit?usp=sharing",
+};
+
+const instantQuoteLink: LinkItem = {
+    title: "Cotizador Inmediato 3D",
+    subtitle: "Cotizaciones instantáneas de impresión 3D.",
+    icon: Zap,
+    tone: "amber",
+    url: "https://cotizador.tritic3d.com/",
 };
 
 const toolsPortalLink: LinkItem = {
@@ -63,6 +72,7 @@ export const homeShortcuts: LinkItem[] = [quoteLink, calculatorLink, toolsPortal
 export const quotingLinks: LinkItem[] = [
     quoteLink,
     calculatorLink,
+    instantQuoteLink,
     { title: "Assets de Clientes", icon: HardDrive, tone: "blue" },
 ];
 
