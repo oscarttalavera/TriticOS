@@ -73,6 +73,13 @@ export const quotingLinks: LinkItem[] = [
     quoteLink,
     calculatorLink,
     instantQuoteLink,
+    {
+        title: "Registro de Cotizaciones",
+        subtitle: "Historial de cotizaciones emitidas.",
+        icon: FileSpreadsheet,
+        tone: "teal",
+        url: "https://docs.google.com/spreadsheets/d/1KJsYzTgAj7mkHIUHAGBEMeX_UEJSHgjNew-FpKbWH2s/edit?usp=sharing",
+    },
     { title: "Assets de Clientes", icon: HardDrive, tone: "blue" },
 ];
 
