@@ -35,7 +35,7 @@ const quoteLink: LinkItem = {
 
 const calculatorLink: LinkItem = {
     title: "Cotizador",
-    subtitle: "Impresión 3D y estructuras.",
+    subtitle: "Calculadora en Google Sheets · Impresión 3D y estructuras.",
     icon: Calculator,
     tone: "purple",
     url: "https://docs.google.com/spreadsheets/d/1GcrvYIQl4BNtuDotTuda6uSxanXtXUhzTWNZguooD9s/edit?usp=sharing",
@@ -43,7 +43,7 @@ const calculatorLink: LinkItem = {
 
 const instantQuoteLink: LinkItem = {
     title: "Cotizador Inmediato 3D",
-    subtitle: "Cotizaciones instantáneas de impresión 3D.",
+    subtitle: "Sitio web de Tritic · Cotizaciones instantáneas de impresión 3D.",
     icon: Zap,
     tone: "amber",
     url: "https://cotizador.tritic3d.com/",
@@ -88,7 +88,7 @@ export const engineeringResources: LinkItem[] = [
     toolsPortalLink,
     {
         title: "Tablas de Barrenación",
-        subtitle: "Referencia para diseño de piezas (insertos y machuelos).",
+        subtitle: "Google Sheets · Referencia para diseño de piezas (insertos y machuelos).",
         icon: Ruler,
         tone: "brand",
         url: DRILLING_TABLES_URL,
@@ -123,7 +123,7 @@ export const engineeringResources: LinkItem[] = [
     },
     {
         title: "Guía de Barrenos",
-        subtitle: "Diámetros para machuelos, insertos y pernos.",
+        subtitle: "Tritic Tools · Diámetros para machuelos, insertos y pernos.",
         icon: Ruler,
         tone: "orange",
         url: `${TOOLS_URL}barrenos/`,
