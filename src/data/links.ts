@@ -142,16 +142,24 @@ export const engineeringResources: LinkItem[] = [
 
 export const purchaseOrders: LinkItem[] = [
     {
+        title: "Registro Principal POs",
+        icon: FileSpreadsheet,
+        tone: "amber",
+        url: "https://docs.google.com/spreadsheets/d/1jqWTtQ3j_tqXBVSKOKO6a8TF4-ZgLgvwosSEDKCj5YY",
+    },
+    {
         title: "Registro POs Compartido",
+        subtitle: "RR Fab",
         icon: FileSpreadsheet,
         tone: "amber",
         url: "https://docs.google.com/spreadsheets/d/1yLWPsZnfxTHGRtHdqoCeEF22fJX88Rt4chJohETiUSQ",
     },
     {
-        title: "Registro Principal POs",
+        title: "Registro POs Compartido",
+        subtitle: "MCU",
         icon: FileSpreadsheet,
         tone: "amber",
-        url: "https://docs.google.com/spreadsheets/d/1jqWTtQ3j_tqXBVSKOKO6a8TF4-ZgLgvwosSEDKCj5YY",
+        url: "https://docs.google.com/spreadsheets/d/1lSdpbJAHbj5tpJl2NHEP_d22tJylCznzS5jwcOsidR0/edit?usp=sharing",
     },
 ];
 
