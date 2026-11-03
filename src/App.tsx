@@ -4,6 +4,7 @@ import { DashboardView } from "./views/DashboardView";
 import { OperationsView } from "./views/OperationsView";
 import { AdminView } from "./views/AdminView";
 import { BrandView } from "./views/BrandView";
+import { DocsView } from "./views/DocsView";
 import { AuthGate } from "./auth/AuthGate";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="/operations" element={<OperationsView />} />
             <Route path="/admin" element={<AdminView />} />
             <Route path="/brand" element={<BrandView />} />
+            <Route path="/docs" element={<DocsView />} />
           </Routes>
         </MainLayout>
       </HashRouter>

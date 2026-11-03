@@ -4,6 +4,7 @@ import {
     Box, Hammer, Layers, PencilRuler, SlidersHorizontal, Stethoscope, Zap,
     type LucideIcon,
 } from "lucide-react";
+import { asset } from "../lib/assets";
 
 export type Tone =
     | "brand" | "green" | "purple" | "blue" | "orange"
@@ -135,7 +136,6 @@ export const engineeringResources: LinkItem[] = [
         tone: "indigo",
         url: `${TOOLS_URL}modelos/`,
     },
-    { title: "Docs Interna", icon: BookOpen, tone: "orange" },
     { title: "Control de Inventario", icon: PackageSearch, tone: "indigo" },
     { title: "Mantenimiento", icon: Wrench, tone: "teal" },
 ];
@@ -163,6 +163,17 @@ export const purchaseOrders: LinkItem[] = [
     },
 ];
 
+/** Vive en Documentos y también se enlaza desde Facturar. */
+const safranBillingGuide: InternalDoc = {
+    filename: "Tritic-Guia-de-facturacion-Safran-Seats.pdf",
+    title: "Guía de facturación: Safran Seats, Planta 4",
+    code: "TRT-PRC-FAC-01",
+    version: "v1.2",
+    category: "Facturación",
+    subtitle: "CFDI a cliente extranjero y envío a Paragon, en cinco pasos.",
+    size: "PDF · 73 KB",
+};
+
 export const billingLinks: LinkItem[] = [
     {
         title: "Portal Facturación SAT",
@@ -181,6 +192,13 @@ export const billingLinks: LinkItem[] = [
         icon: Building2,
         tone: "brand",
         url: "https://sem.cfdiseguro.com/cfdi/EnviaFactura",
+    },
+    {
+        title: "Guía de Facturación Safran",
+        subtitle: `${safranBillingGuide.code} · Planta 4, envío a Paragon.`,
+        icon: BookOpen,
+        tone: "brand",
+        url: asset(safranBillingGuide.filename),
     },
     {
         title: "Cargar Facturas Vallen",
@@ -205,4 +223,21 @@ export const prospectFiles: ProspectFile[] = [
     { filename: "Tritic-Folletoservicios.pdf", title: "Folleto de Servicios (anterior)", size: "PDF · 1.2 MB", legacy: true },
     { filename: "Tritic-servicios.pdf", title: "Catálogo de Servicios (anterior)", size: "PDF · 65 KB", legacy: true },
     { filename: "Tritic-Impresion3D.pdf", title: "Folleto de Impresión 3D (anterior)", size: "PDF · 182 KB", legacy: true },
+];
+
+export interface InternalDoc {
+    filename: string;
+    title: string;
+    /** Código de control del documento, p. ej. TRT-PRC-FAC-01. */
+    code: string;
+    version: string;
+    /** Sección en la que se agrupa dentro de Documentos. */
+    category: string;
+    subtitle?: string;
+    size: string;
+}
+
+/** Documentos internos (SOPs, procedimientos, guías). El orden define el de las secciones. */
+export const internalDocs: InternalDoc[] = [
+    safranBillingGuide,
 ];

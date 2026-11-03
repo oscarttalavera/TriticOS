@@ -1,4 +1,4 @@
-import { Sun, Moon, Menu, X, Home, BriefcaseBusiness, Paintbrush, Settings, LogOut } from "lucide-react";
+import { Sun, Moon, Menu, X, Home, BriefcaseBusiness, Paintbrush, Settings, LogOut, BookOpen } from "lucide-react";
 import { useTheme } from "../../hooks/useTheme";
 import { useAuth } from "../../auth/authContext";
 import { NavLink } from "react-router-dom";
@@ -15,6 +15,7 @@ export function Navbar() {
         { path: "/operations", icon: <Settings className="w-5 h-5 md:w-4 md:h-4 mr-3 md:mr-2" />, label: "Ingeniería y Taller" },
         { path: "/admin", icon: <BriefcaseBusiness className="w-5 h-5 md:w-4 md:h-4 mr-3 md:mr-2" />, label: "Administrativo" },
         { path: "/brand", icon: <Paintbrush className="w-5 h-5 md:w-4 md:h-4 mr-3 md:mr-2" />, label: "Marca y Diseño" },
+        { path: "/docs", icon: <BookOpen className="w-5 h-5 md:w-4 md:h-4 mr-3 md:mr-2" />, label: "Documentos" },
     ];
 
     const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
