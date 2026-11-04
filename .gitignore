@@ -25,3 +25,6 @@ release
 *.njsproj
 *.sln
 *.sw?
+
+# Documentos de facturación: viven en Google Drive (tienen datos fiscales y bancarios)
+public/facturacion/

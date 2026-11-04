@@ -1,6 +1,5 @@
-import { FileText, Download } from "lucide-react";
-import type { DocumentFile } from "../../data/links";
-import { asset } from "../../lib/assets";
+import { FileText, Download, ExternalLink } from "lucide-react";
+import { documentHref, type DocumentFile } from "../../data/links";
 
 /** Las versiones anteriores (`legacy`) se agrupan al final en un bloque plegado. */
 export function DocumentList({ docs }: { docs: DocumentFile[] }) {
@@ -10,7 +9,7 @@ export function DocumentList({ docs }: { docs: DocumentFile[] }) {
     return (
         <div className="flex flex-col gap-2">
             {current.map((doc) => (
-                <DocumentRow key={doc.filename} doc={doc} />
+                <DocumentRow key={documentHref(doc)} doc={doc} />
             ))}
 
             {legacy.length > 0 && (
@@ -20,7 +19,7 @@ export function DocumentList({ docs }: { docs: DocumentFile[] }) {
                     </summary>
                     <div className="mt-1 flex flex-col gap-2 opacity-70">
                         {legacy.map((doc) => (
-                            <DocumentRow key={doc.filename} doc={doc} />
+                            <DocumentRow key={documentHref(doc)} doc={doc} />
                         ))}
                     </div>
                 </details>
@@ -30,7 +29,8 @@ export function DocumentList({ docs }: { docs: DocumentFile[] }) {
 }
 
 function DocumentRow({ doc }: { doc: DocumentFile }) {
-    const meta = [doc.code, doc.version, doc.size].filter(Boolean).join(" · ");
+    const href = documentHref(doc);
+    const meta = [doc.code, doc.version, doc.url ? "Google Drive" : doc.size].filter(Boolean).join(" · ");
 
     return (
         <div className="group flex items-center gap-3 p-3 rounded-xl border border-slate-100 dark:border-slate-800 hover:border-azul-200 dark:hover:border-azul-600 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all duration-150">
@@ -38,7 +38,7 @@ function DocumentRow({ doc }: { doc: DocumentFile }) {
                 <FileText className="w-5 h-5 text-azul-700 dark:text-verde-500" />
             </div>
             <a
-                href={asset(doc.filename)}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 min-w-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-azul-600 rounded"
@@ -56,15 +56,20 @@ function DocumentRow({ doc }: { doc: DocumentFile }) {
                     {meta}
                 </p>
             </a>
-            <a
-                href={asset(doc.filename)}
-                download={doc.filename}
-                className="p-1.5 text-slate-500 hover:text-azul-600 dark:hover:text-verde-500 hover:bg-azul-50 dark:hover:bg-azul-700/30 rounded-lg transition-colors"
-                title="Descargar"
-                aria-label={`Descargar ${doc.title}`}
-            >
-                <Download className="w-4 h-4" />
-            </a>
+            {doc.filename ? (
+                <a
+                    href={href}
+                    download={doc.filename}
+                    className="p-1.5 text-slate-500 hover:text-azul-600 dark:hover:text-verde-500 hover:bg-azul-50 dark:hover:bg-azul-700/30 rounded-lg transition-colors"
+                    title="Descargar"
+                    aria-label={`Descargar ${doc.title}`}
+                >
+                    <Download className="w-4 h-4" />
+                </a>
+            ) : (
+                // En Drive se descarga desde el visor; aquí solo se indica que abre fuera del hub.
+                <ExternalLink className="w-3.5 h-3.5 m-1.5 text-slate-300 dark:text-slate-600 group-hover:text-azul-600 dark:group-hover:text-verde-500 transition-colors" />
+            )}
         </div>
     );
 }

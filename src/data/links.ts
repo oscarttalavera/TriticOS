@@ -1,5 +1,5 @@
 import {
-    BookOpen, BookUser, Building2, CreditCard, FileSpreadsheet, Calculator,
+    BookUser, FileSpreadsheet, FileText, Calculator, Map as MapIcon,
     Landmark, PackageSearch, Ruler, ShieldCheck, Wrench,
     Box, Hammer, Layers, PencilRuler, SlidersHorizontal, Stethoscope, Zap,
     type LucideIcon,
@@ -171,38 +171,151 @@ export const purchaseOrders: LinkItem[] = [
 ];
 
 export interface DocumentFile {
-    filename: string;
     title: string;
     /** Sección en la que se agrupa dentro de Documentos. */
     category: string;
-    size: string;
+    /** Archivo en /public: se abre y se puede descargar desde el hub. */
+    filename?: string;
+    /** Documento en Google Drive, restringido a las cuentas de Tritic. */
+    url?: string;
+    size?: string;
     subtitle?: string;
-    /** Código de control del documento, p. ej. TRT-PRC-FAC-01 (procedimientos y SOPs). */
+    /** Código de control del documento, p. ej. TRT-PRC-FAC-21 (procedimientos y SOPs). */
     code?: string;
     version?: string;
     /** Versión anterior: sigue disponible pero se muestra plegada al final. */
     legacy?: boolean;
 }
 
+export const documentHref = (doc: DocumentFile) => (doc.filename ? asset(doc.filename) : doc.url);
+
+const driveFile = (id: string) => `https://drive.google.com/file/d/${id}/view`;
+
 export const PROSPECT_CATEGORY = "Material para prospectos";
 
-/** También se enlaza desde Facturar. */
-const safranBillingGuide: DocumentFile = {
-    filename: "Tritic-Guia-de-facturacion-Safran-Seats.pdf",
-    title: "Guía de facturación: Safran Seats, Planta 4",
-    code: "TRT-PRC-FAC-01",
-    version: "v1.2",
-    category: "Facturación",
-    subtitle: "CFDI a cliente extranjero y envío a Paragon, en cinco pasos.",
-    size: "PDF · 73 KB",
+/*
+ * Sistema de facturación (TRT-PRC-FAC). Los PDF viven en Drive y no en /public
+ * porque traen datos fiscales y bancarios, y el sitio y el repo son públicos.
+ */
+const BILLING_CATEGORY = "Facturación";
+const BILLING_CLIENTS_CATEGORY = "Facturación por cliente";
+
+const billingMap: DocumentFile = {
+    title: "Mapa de facturación",
+    subtitle: "Por dónde empezar: qué guía o procedimiento usar en cada caso.",
+    code: "TRT-PRC-FAC-00",
+    version: "v1.1",
+    category: BILLING_CATEGORY,
+    url: driveFile("18MMUOMraBeDOY3sZuaF2MW3ahFVStEZn"),
 };
 
+/** Procedimientos comunes: clientes sin guía o tareas sueltas. */
+const billingProcedures: DocumentFile[] = [
+    {
+        title: "Generar una factura",
+        subtitle: "Clientes sin guía y claves SAT.",
+        code: "TRT-PRC-FAC-21",
+        version: "v1.1",
+        category: BILLING_CATEGORY,
+        url: driveFile("1Sztl46dlAyVXfTKwGCxBb7laTsU7U6qW"),
+    },
+    {
+        title: "Escanear y archivar",
+        subtitle: "Cuando regresa la factura firmada o sellada.",
+        code: "TRT-PRC-FAC-22",
+        version: "v1.1",
+        category: BILLING_CATEGORY,
+        url: driveFile("1CTjHjGTRZ7umwpu_oWZrzwYhW6tHj9bO"),
+    },
+    {
+        title: "Complemento de pago",
+        subtitle: "Cada pago de una factura PPD, a más tardar el día 5 del mes siguiente.",
+        code: "TRT-PRC-FAC-23",
+        version: "v1.1",
+        category: BILLING_CATEGORY,
+        url: driveFile("1s91lffg5CNvmL9vdaq7G8D47o5T1FF_b"),
+    },
+    {
+        title: "Cancelar o sustituir",
+        subtitle: "Cuando hay un error o la venta no se realizó.",
+        code: "TRT-PRC-FAC-24",
+        version: "v1.1",
+        category: BILLING_CATEGORY,
+        url: driveFile("17AloTKDCWFhgN5mytLIGLUz2CSnACfud"),
+    },
+];
+
+export interface BillingClient {
+    name: string;
+    /** Planta o forma de envío, y el código del cliente en la hoja de POs. */
+    detail: string;
+    guide: DocumentFile;
+    portalUrl?: string;
+}
+
+/** Facturar: cada cliente con guía, con su guía y su portal juntos. */
+export const billingClients: BillingClient[] = [
+    {
+        name: "Safran México",
+        detail: "Plantas 1 y 6 · SAFRAN 1, SAFRAN 6",
+        portalUrl: "https://sem.cfdiseguro.com/cfdi/EnviaFactura",
+        guide: {
+            title: "Guía de facturación: Safran Aerosystems México, plantas 1 y 6",
+            subtitle: "Carga al portal antes de entregar y complemento en el portal.",
+            code: "TRT-PRC-FAC-11",
+            version: "v1.1",
+            category: BILLING_CLIENTS_CATEGORY,
+            url: driveFile("12Z2_-z4raK83uJmlEGK5pba_UWmEqYNE"),
+        },
+    },
+    {
+        name: "Safran Seats",
+        detail: "Planta 4 · envío a Paragon · SAFRAN 4",
+        guide: {
+            title: "Guía de facturación: Safran Seats, Planta 4",
+            subtitle: "CFDI a cliente extranjero y envío en PDF a Paragon.",
+            code: "TRT-PRC-FAC-14",
+            version: "v1.5",
+            category: BILLING_CLIENTS_CATEGORY,
+            url: driveFile("197lHkvTHvTnjtP6KLqy_migeu_OE2Az8"),
+        },
+    },
+    {
+        name: "Safran Evacuation",
+        detail: "Envío por correo a cuentas por pagar · SAEV",
+        guide: {
+            title: "Guía de facturación: Safran Aerosystems Evacuation",
+            subtitle: "Cliente extranjero en USD; se envía por correo.",
+            code: "TRT-PRC-FAC-13",
+            version: "v1.1",
+            category: BILLING_CLIENTS_CATEGORY,
+            url: driveFile("1v7UrDN3WGu1Cbnyz7kB2WatTE5DlYMFJ"),
+        },
+    },
+    {
+        name: "Vallen",
+        detail: "Retención de ISR 1.25 % · VALL",
+        portalUrl: "https://recepcion.facturaxion.com/?san=PSI8906083F8#",
+        guide: {
+            title: "Guía de facturación: Vallen",
+            subtitle: "Proveedora de Seguridad Industrial del Golfo, con retención de ISR.",
+            code: "TRT-PRC-FAC-12",
+            version: "v1.1",
+            category: BILLING_CLIENTS_CATEGORY,
+            url: driveFile("1Ai-MvudkpLrJwtVr49XFqjqOwriCtYnS"),
+        },
+    },
+];
+
 /**
- * Todos los PDF del hub. Documentos los muestra completos, agrupados por `category`
+ * Todos los documentos del hub. Documentos los muestra completos, agrupados por `category`
  * en el orden en que aparece cada una; las demás pantallas toman de aquí lo suyo.
  */
 export const documents: DocumentFile[] = [
-    safranBillingGuide,
+    billingMap,
+    ...billingProcedures,
+    // Por código, no en el orden de Facturar.
+    ...billingClients.map((client) => client.guide).sort((a, b) => (a.code ?? "").localeCompare(b.code ?? "")),
     { filename: "Tritic-Presentacion-de-servicios.pdf", title: "Presentación de Servicios", category: PROSPECT_CATEGORY, size: "PDF · 1.4 MB" },
     { filename: "Tritic-Ficha-de-servicios.pdf", title: "Ficha de Servicios", category: PROSPECT_CATEGORY, size: "PDF · 970 KB" },
     { filename: "Tritic-Impresion-3D-para-planta.pdf", title: "Impresión 3D para Planta", category: PROSPECT_CATEGORY, size: "PDF · 433 KB" },
@@ -229,25 +342,11 @@ export const satLinks: LinkItem[] = [
     },
 ];
 
-/** Facturar: portal y guía de cada cliente, juntos. */
-export const clientBillingLinks: LinkItem[] = [
-    {
-        title: "Portal Facturas Safran",
-        icon: Building2,
-        tone: "brand",
-        url: "https://sem.cfdiseguro.com/cfdi/EnviaFactura",
-    },
-    {
-        title: "Guía de Facturación Safran",
-        subtitle: `${safranBillingGuide.code} · Planta 4, envío a Paragon.`,
-        icon: BookOpen,
-        tone: "brand",
-        url: asset(safranBillingGuide.filename),
-    },
-    {
-        title: "Cargar Facturas Vallen",
-        icon: CreditCard,
-        tone: "brand",
-        url: "https://recepcion.facturaxion.com/?san=PSI8906083F8#",
-    },
-];
+/** Facturar: el mapa primero y luego los procedimientos comunes. */
+export const billingProcedureLinks: LinkItem[] = [billingMap, ...billingProcedures].map((doc) => ({
+    title: doc.title,
+    subtitle: `${doc.code} · ${doc.subtitle}`,
+    icon: doc === billingMap ? MapIcon : FileText,
+    tone: "brand",
+    url: documentHref(doc),
+}));
