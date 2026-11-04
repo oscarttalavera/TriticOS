@@ -2,7 +2,9 @@ import { FileDigit, RefreshCw, AlertCircle } from "lucide-react";
 import { SectionCard } from "../ui/SectionCard";
 import { LinkList } from "../ui/LinkList";
 import { useUsdRate } from "../../hooks/useUsdRate";
-import { billingLinks } from "../../data/links";
+import { clientBillingLinks, satLinks } from "../../data/links";
+
+const GROUP = "px-3 mb-1 text-[10px] font-semibold font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400";
 
 function RatePill() {
     const { data, outdatedSince, loading, error, refresh } = useUsdRate();
@@ -49,7 +51,16 @@ export function BillingActions() {
             action={<RatePill />}
             className="flex flex-col h-full"
         >
-            <LinkList items={billingLinks} trailing="external" />
+            <div className="flex flex-col gap-4">
+                <div>
+                    <p className={GROUP}>SAT</p>
+                    <LinkList items={satLinks} trailing="external" />
+                </div>
+                <div>
+                    <p className={GROUP}>Por cliente</p>
+                    <LinkList items={clientBillingLinks} trailing="external" />
+                </div>
+            </div>
         </SectionCard>
     );
 }

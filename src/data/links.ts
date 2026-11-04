@@ -1,5 +1,5 @@
 import {
-    BookOpen, BookUser, Building2, CreditCard, FileSpreadsheet, Calculator, HardDrive,
+    BookOpen, BookUser, Building2, CreditCard, FileSpreadsheet, Calculator,
     Landmark, PackageSearch, Ruler, ShieldCheck, Wrench,
     Box, Hammer, Layers, PencilRuler, SlidersHorizontal, Stethoscope, Zap,
     type LucideIcon,
@@ -50,7 +50,7 @@ const instantQuoteLink: LinkItem = {
     url: "https://cotizador.tritic3d.com/",
 };
 
-const toolsPortalLink: LinkItem = {
+export const toolsPortalLink: LinkItem = {
     title: "Tritic Tools",
     subtitle: "Portal con todas las herramientas de ingeniería.",
     icon: Hammer,
@@ -64,6 +64,14 @@ const directoryLink: LinkItem = {
     icon: BookUser,
     tone: "blue",
     url: DIRECTORY_URL,
+};
+
+const drillingTablesLink: LinkItem = {
+    title: "Tablas de Barrenación",
+    subtitle: "Google Sheets · Referencia para diseño de piezas (insertos y machuelos).",
+    icon: Ruler,
+    tone: "brand",
+    url: DRILLING_TABLES_URL,
 };
 
 /** Atajos de Inicio: los recursos de uso diario, que viven en su sección. */
@@ -81,18 +89,16 @@ export const quotingLinks: LinkItem[] = [
         tone: "teal",
         url: "https://docs.google.com/spreadsheets/d/1KJsYzTgAj7mkHIUHAGBEMeX_UEJSHgjNew-FpKbWH2s/edit?usp=sharing",
     },
-    { title: "Assets de Clientes", icon: HardDrive, tone: "blue" },
 ];
 
-/** Ingeniería y Taller. Los enlaces sin `url` se agrupan en "Próximamente". */
-export const engineeringResources: LinkItem[] = [
-    toolsPortalLink,
+/** Ingeniería y Taller, diseño: lo que se consulta al modelar una pieza. */
+export const designResources: LinkItem[] = [
     {
-        title: "Tablas de Barrenación",
-        subtitle: "Google Sheets · Referencia para diseño de piezas (insertos y machuelos).",
-        icon: Ruler,
-        tone: "brand",
-        url: DRILLING_TABLES_URL,
+        title: "Guía de Diseño para Impresión 3D",
+        subtitle: "Espesores, voladizos, orientación, holguras y ensambles.",
+        icon: PencilRuler,
+        tone: "blue",
+        url: `${TOOLS_URL}diseno/`,
     },
     {
         title: "Catálogo de Materiales",
@@ -102,19 +108,24 @@ export const engineeringResources: LinkItem[] = [
         url: `${TOOLS_URL}materiales/`,
     },
     {
-        title: "Guía de Diseño para Impresión 3D",
-        subtitle: "Espesores, voladizos, orientación, holguras y ensambles.",
-        icon: PencilRuler,
-        tone: "blue",
-        url: `${TOOLS_URL}diseno/`,
+        title: "Guía de Barrenos",
+        subtitle: "Tritic Tools · Diámetros para machuelos, insertos y pernos.",
+        icon: Ruler,
+        tone: "orange",
+        url: `${TOOLS_URL}barrenos/`,
     },
+    drillingTablesLink,
     {
-        title: "Diagnóstico de Fallas",
-        subtitle: "Del síntoma a la causa y su solución.",
-        icon: Stethoscope,
-        tone: "red",
-        url: `${TOOLS_URL}diagnostico/`,
+        title: "Directorio de Modelos 3D",
+        subtitle: "Más de 25 sitios para descargar modelos.",
+        icon: Box,
+        tone: "indigo",
+        url: `${TOOLS_URL}modelos/`,
     },
+];
+
+/** Ingeniería y Taller, producción. Los enlaces sin `url` se agrupan en "Próximamente". */
+export const workshopResources: LinkItem[] = [
     {
         title: "Guía de Calibración",
         subtitle: "Calibración de impresora paso a paso con modelos de prueba.",
@@ -123,22 +134,18 @@ export const engineeringResources: LinkItem[] = [
         url: `${TOOLS_URL}calibracion/`,
     },
     {
-        title: "Guía de Barrenos",
-        subtitle: "Tritic Tools · Diámetros para machuelos, insertos y pernos.",
-        icon: Ruler,
-        tone: "orange",
-        url: `${TOOLS_URL}barrenos/`,
-    },
-    {
-        title: "Directorio de Modelos 3D",
-        subtitle: "Más de 25 sitios para descargar modelos.",
-        icon: Box,
-        tone: "indigo",
-        url: `${TOOLS_URL}modelos/`,
+        title: "Diagnóstico de Fallas",
+        subtitle: "Del síntoma a la causa y su solución.",
+        icon: Stethoscope,
+        tone: "red",
+        url: `${TOOLS_URL}diagnostico/`,
     },
     { title: "Control de Inventario", icon: PackageSearch, tone: "indigo" },
     { title: "Mantenimiento", icon: Wrench, tone: "teal" },
 ];
+
+/** Documentos: documentos de referencia que no son PDF. */
+export const internalResources: LinkItem[] = [directoryLink, drillingTablesLink];
 
 export const purchaseOrders: LinkItem[] = [
     {
@@ -163,8 +170,24 @@ export const purchaseOrders: LinkItem[] = [
     },
 ];
 
-/** Vive en Documentos y también se enlaza desde Facturar. */
-const safranBillingGuide: InternalDoc = {
+export interface DocumentFile {
+    filename: string;
+    title: string;
+    /** Sección en la que se agrupa dentro de Documentos. */
+    category: string;
+    size: string;
+    subtitle?: string;
+    /** Código de control del documento, p. ej. TRT-PRC-FAC-01 (procedimientos y SOPs). */
+    code?: string;
+    version?: string;
+    /** Versión anterior: sigue disponible pero se muestra plegada al final. */
+    legacy?: boolean;
+}
+
+export const PROSPECT_CATEGORY = "Material para prospectos";
+
+/** También se enlaza desde Facturar. */
+const safranBillingGuide: DocumentFile = {
     filename: "Tritic-Guia-de-facturacion-Safran-Seats.pdf",
     title: "Guía de facturación: Safran Seats, Planta 4",
     code: "TRT-PRC-FAC-01",
@@ -174,7 +197,24 @@ const safranBillingGuide: InternalDoc = {
     size: "PDF · 73 KB",
 };
 
-export const billingLinks: LinkItem[] = [
+/**
+ * Todos los PDF del hub. Documentos los muestra completos, agrupados por `category`
+ * en el orden en que aparece cada una; las demás pantallas toman de aquí lo suyo.
+ */
+export const documents: DocumentFile[] = [
+    safranBillingGuide,
+    { filename: "Tritic-Presentacion-de-servicios.pdf", title: "Presentación de Servicios", category: PROSPECT_CATEGORY, size: "PDF · 1.4 MB" },
+    { filename: "Tritic-Ficha-de-servicios.pdf", title: "Ficha de Servicios", category: PROSPECT_CATEGORY, size: "PDF · 970 KB" },
+    { filename: "Tritic-Impresion-3D-para-planta.pdf", title: "Impresión 3D para Planta", category: PROSPECT_CATEGORY, size: "PDF · 433 KB" },
+    { filename: "Tritic-Folletoservicios.pdf", title: "Folleto de Servicios", category: PROSPECT_CATEGORY, size: "PDF · 1.2 MB", legacy: true },
+    { filename: "Tritic-servicios.pdf", title: "Catálogo de Servicios", category: PROSPECT_CATEGORY, size: "PDF · 65 KB", legacy: true },
+    { filename: "Tritic-Impresion3D.pdf", title: "Folleto de Impresión 3D", category: PROSPECT_CATEGORY, size: "PDF · 182 KB", legacy: true },
+];
+
+export const prospectDocuments = documents.filter((doc) => doc.category === PROSPECT_CATEGORY);
+
+/** Facturar: trámites ante el SAT. */
+export const satLinks: LinkItem[] = [
     {
         title: "Portal Facturación SAT",
         icon: ShieldCheck,
@@ -187,6 +227,10 @@ export const billingLinks: LinkItem[] = [
         tone: "brand",
         url: "https://www.sat.gob.mx/portal/public/tramites/declaraciones-pf",
     },
+];
+
+/** Facturar: portal y guía de cada cliente, juntos. */
+export const clientBillingLinks: LinkItem[] = [
     {
         title: "Portal Facturas Safran",
         icon: Building2,
@@ -206,38 +250,4 @@ export const billingLinks: LinkItem[] = [
         tone: "brand",
         url: "https://recepcion.facturaxion.com/?san=PSI8906083F8#",
     },
-];
-
-export interface ProspectFile {
-    filename: string;
-    title: string;
-    size: string;
-    /** Versión anterior: sigue disponible pero se muestra al final y atenuada. */
-    legacy?: boolean;
-}
-
-export const prospectFiles: ProspectFile[] = [
-    { filename: "Tritic-Presentacion-de-servicios.pdf", title: "Presentación de Servicios", size: "PDF · 1.4 MB" },
-    { filename: "Tritic-Ficha-de-servicios.pdf", title: "Ficha de Servicios", size: "PDF · 970 KB" },
-    { filename: "Tritic-Impresion-3D-para-planta.pdf", title: "Impresión 3D para Planta", size: "PDF · 433 KB" },
-    { filename: "Tritic-Folletoservicios.pdf", title: "Folleto de Servicios (anterior)", size: "PDF · 1.2 MB", legacy: true },
-    { filename: "Tritic-servicios.pdf", title: "Catálogo de Servicios (anterior)", size: "PDF · 65 KB", legacy: true },
-    { filename: "Tritic-Impresion3D.pdf", title: "Folleto de Impresión 3D (anterior)", size: "PDF · 182 KB", legacy: true },
-];
-
-export interface InternalDoc {
-    filename: string;
-    title: string;
-    /** Código de control del documento, p. ej. TRT-PRC-FAC-01. */
-    code: string;
-    version: string;
-    /** Sección en la que se agrupa dentro de Documentos. */
-    category: string;
-    subtitle?: string;
-    size: string;
-}
-
-/** Documentos internos (SOPs, procedimientos, guías). El orden define el de las secciones. */
-export const internalDocs: InternalDoc[] = [
-    safranBillingGuide,
 ];
